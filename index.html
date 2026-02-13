@@ -90,6 +90,37 @@ footer {
     animation: blink 2s infinite;
     display: inline-block;
 }
+        /* Forces Contact/Demo/Sales forms into the professional side-by-side view */
+.contact-stack {
+    display: flex !important;
+    flex-direction: row; /* Side by side on PC */
+    gap: 30px;
+    background: white;
+    padding: 40px;
+    border-radius: 30px;
+    align-items: flex-start;
+}
+
+#form-content {
+    flex: 1; /* Form takes half the space */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for inputs */
+    gap: 15px;
+}
+
+/* Map takes the other half */
+.contact-stack > div:last-child {
+    flex: 1;
+    min-height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+/* Mobile Fix: Stack them on iPhone */
+@media (max-width: 900px) {
+    .contact-stack { flex-direction: column; padding: 20px; }
+    #form-content { grid-template-columns: 1fr; }
+}
     </style>
 </head>
 <body>
@@ -127,15 +158,24 @@ footer {
         </select>
     </div>
 </header>
-    <div style="display:flex; gap:8px;">
-        <button onclick="nav('prod-menu')" class="btn-v" id="nav-prod">PRODUCTS</button>
-        <button onclick="openForm('CONTACT US')" class="btn-v">Contact</button>
-        <button onclick="openForm('DEMO REQUEST')" class="btn-v" style="background:#6366f1;">Demo Request</button>
-        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" style="background:#059669;">PLATFORM</button>
+    <header style="display: flex; justify-content: space-between; align-items: center; padding: 10px 20px; background: #e8ddc7; position: fixed; top: 0; width: 100%; z-index: 10000;">
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <img src="IMAGES/ui/logo.png" height="30" onclick="nav('home')" style="cursor:pointer; flex-shrink:0;" alt="GeoTrackPro">
+        <button onclick="nav('home')" class="btn-v" style="background:#1e293b;">HOME</button>
+        <button onclick="nav('about-us')" class="btn-v" style="background:#1e293b;">ABOUT US</button>
     </div>
-    <div>
-        <select id="langSelect" onchange="updateLang(this.value)" style="border-radius:20px; font-weight:800; font-size:0.6rem; padding: 8px 15px; background: var(--accent); color: white; border: none; width: auto; margin-bottom:0;">
-            <option value="en">EN</option><option value="it">IT</option><option value="es">ES</option><option value="fr">FR</option>
+    
+    <div style="display: flex; align-items: center; gap: 8px;">
+        <button onclick="nav('prod-menu')" class="btn-v">PRODUCTS</button>
+        <button onclick="openForm('CONTACT')" class="btn-v">CONTACT</button>
+        <button onclick="openForm('DEMO')" class="btn-v">DEMO REQUEST</button>
+        <button onclick="window.open('https://vanguard.geotrackpro.com', '_blank')" class="btn-v" style="background:#00a86b;">PLATFORM</button>
+        
+        <select id="langSelect" onchange="updateLang(this.value)" style="background: #3E63DD; color: white; border-radius: 20px; padding: 5px 12px; font-weight: 800; font-size: 0.7rem; border: none; cursor: pointer; appearance: none;">
+            <option value="en">EN ▾</option>
+            <option value="fr">FR ▾</option>
+            <option value="es">ES ▾</option>
+            <option value="it">IT ▾</option>
         </select>
     </div>
 </header>
@@ -219,9 +259,9 @@ footer {
         <span id="clock"></span>
         <div style="width:8px; height:8px; background:#00ff00; border-radius:50%; box-shadow: 0 0 8px #00ff00; flex-shrink:0;"></div>
     </div>
-   <div style="display:flex; gap:20px;">
-    <a href="DOCS/LEGAL/TERMS.pdf" target="_blank" style="color:white; text-decoration:none; font-weight:700; opacity:0.7; font-size:0.7rem;">TERMS</a>
-    <a href="DOCS/LEGAL/PRIVACY.pdf" target="_blank" style="color:white; text-decoration:none; font-weight:700; opacity:0.7; font-size:0.7rem;">PRIVACY</a>
+   <div style="display: flex; gap: 20px;">
+    <a href="DOCS/LEGAL/TERMS.pdf" target="_blank" style="color: white; text-decoration: none; font-weight: 800; font-size: 0.7rem;">TERMS</a>
+    <a href="DOCS/LEGAL/PRIVACY.pdf" target="_blank" style="color: white; text-decoration: none; font-weight: 800; font-size: 0.7rem;">PRIVACY</a>
 </div>
 </footer>
 
@@ -432,6 +472,7 @@ function resetForm() {
 </body>
 
 </html>
+
 
 
 
