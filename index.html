@@ -53,11 +53,14 @@
 <body>
 
 <header>
-    <div style="display:flex; align-items:center; gap:15px;">
-        <img src="IMAGES/UI/logo.png" height="30" onclick="nav('home')" style="cursor:pointer" alt="Logo">
-        <button onclick="nav('about-us')" class="btn-v" style="background:#475569;">About Us</button>
-        <button onclick="nav('home')" class="btn-v" style="background:#1e293b;">Home</button>
-    </div>
+    <div style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+    <img src="IMAGES/ui/logo.png" 
+         height="35" 
+         onclick="nav('home')" 
+         style="cursor:pointer; object-fit:contain;" 
+         alt="Logo"
+         onerror="this.src='https://via.placeholder.com/100x35/e8ddc7/0a0f1d?text=VANGUARD';">
+</div>
     <div style="display:flex; gap:8px;">
         <button onclick="nav('prod-menu')" class="btn-v" id="nav-prod">PRODUCTS</button>
         <button onclick="openForm('CONTACT US')" class="btn-v">Contact</button>
@@ -358,5 +361,6 @@ function resetForm() {
 </body>
 
 </html>
+
 
 
