@@ -48,16 +48,73 @@
             .f-grid { justify-content: center; }
             header div { justify-content: center; width: 100%; }
         }
+        /* --- VANGUARD GLOBAL LAYOUT FIX --- */
+header {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 10px 2% !important;
+    gap: 10px;
+    background: #e8ddc7 !important; /* Ensures the Gold stays consistent */
+}
+
+/* Ensures buttons don't crush each other on smaller screens */
+header .btn-v {
+    padding: 8px 12px !important;
+    font-size: 0.6rem !important;
+    flex-shrink: 0;
+}
+
+footer {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    padding: 0 4% !important;
+    background: #0a101f !important;
+    z-index: 10000;
+}
+
+/* Professional LED Animation */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0.3; }
+    100% { opacity: 1; }
+}
+
+.led-dot {
+    width: 8px;
+    height: 8px;
+    background: #00ff00;
+    border-radius: 50%;
+    box-shadow: 0 0 8px #00ff00;
+    animation: blink 2s infinite;
+    display: inline-block;
+}
     </style>
 </head>
 <body>
 
 <header>
-    <div style="display:flex; align-items:center; gap:12px; flex-shrink:0;">
+    <div style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
         <img src="IMAGES/ui/logo.png" height="30" onclick="nav('home')" style="cursor:pointer" alt="Logo">
-        <button onclick="nav('about-us')" class="btn-v" style="background:#1e293b;">ABOUT US</button>
         <button onclick="nav('home')" class="btn-v" style="background:#1e293b;">HOME</button>
+        <button onclick="nav('about-us')" class="btn-v" style="background:#1e293b;">ABOUT US</button>
     </div>
+    
+    <div style="display:flex; align-items:center; gap:8px; flex-wrap: wrap; justify-content: flex-end;">
+        <button onclick="nav('prod-menu')" class="btn-v">PRODUCTS</button>
+        <button onclick="openForm('CONTACT')" class="btn-v">CONTACT</button>
+        <button onclick="openForm('DEMO')" class="btn-v">DEMO REQUEST</button>
+        <button onclick="window.open('https://vanguard.geotrackpro.com', '_blank')" class="btn-v" style="background:#00a86b;">PLATFORM</button>
+        
+        <select id="langSelect" onchange="updateLang(this.value)" style="border-radius:20px; font-weight:800; font-size:0.6rem; padding: 5px; width: auto; border:none; background: white; cursor: pointer;">
+            <option value="en">EN</option>
+            <option value="fr">FR</option>
+            <option value="es">ES</option>
+            <option value="it">IT</option>
+        </select>
+    </div>
+</header>
     
     <div style="display:flex; align-items:center; gap:8px;">
         <button onclick="nav('prod-menu')" class="btn-v">PRODUCTS</button>
@@ -162,10 +219,10 @@
         <span id="clock"></span>
         <div style="width:8px; height:8px; background:#00ff00; border-radius:50%; box-shadow: 0 0 8px #00ff00; flex-shrink:0;"></div>
     </div>
-    <div style="display:flex; gap:15px;">
-        <a href="DOCS/LEGAL/TERMS.pdf" target="_blank" style="color:white; text-decoration:none; opacity:0.8;">TERMS</a>
-        <a href="DOCS/LEGAL/PRIVACY.pdf" target="_blank" style="color:white; text-decoration:none; opacity:0.8;">PRIVACY</a>
-    </div>
+   <div style="display:flex; gap:20px;">
+    <a href="DOCS/LEGAL/TERMS.pdf" target="_blank" style="color:white; text-decoration:none; font-weight:700; opacity:0.7; font-size:0.7rem;">TERMS</a>
+    <a href="DOCS/LEGAL/PRIVACY.pdf" target="_blank" style="color:white; text-decoration:none; font-weight:700; opacity:0.7; font-size:0.7rem;">PRIVACY</a>
+</div>
 </footer>
 
 <script>
@@ -375,6 +432,7 @@ function resetForm() {
 </body>
 
 </html>
+
 
 
 
