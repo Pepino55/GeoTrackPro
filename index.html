@@ -188,74 +188,53 @@
             abGT: "Portata Globale", abGP: "Hardware progettato per la connettività internazionale e il supporto locale dedicato.",
             abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura sviluppate dal nostro team tecnico per le vostre esigenze operative.",
             fName: "Nome Completo *", cName: "Azienda *", email: "Email *", phone: "Telefono *", help: "Messaggio *", selectC: "Seleziona Paese *", submit: "INVIA RICHIESTA"
+        },
+        es: { 
+            h: "VANGUARDIA GLOBAL", p: "PRODUCTOS", ab: "NOSOTROS",
+            v: "Vehículo", m: "Moto", a: "Activos", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.",
+            abT: "EL ESTÁNDAR VANGUARD", abS: "Inteligencia de activos para la empresa moderna.",
+            abP1: "Vanguard Global entrega herramientas de precisión para asegurar y optimizar sus activos.",
+            abMT: "Nuestra Misión", abMP: "Proporcionar una visión constante de sus activos más valiosos mediante innovación.",
+            abGT: "Alcance Global", abGP: "Hardware diseñado para conectividad internacional con soporte local experto.",
+            abST: "Seguridad Adaptativa", abSP: "Configuraciones personalizadas desarrolladas para cumplir con las demandas de su flujo de trabajo.",
+            fName: "Nombre *", cName: "Empresa *", email: "Email *", phone: "Teléfono *", help: "Mensaje *", selectC: "País *", submit: "ENVIAR"
+        },
+        fr: { 
+            h: "VANGUARD GLOBAL", p: "PRODUITS", ab: "À PROPOS",
+            v: "Véhicule", m: "Moto", a: "Actif", dc: "Dashcam", o: "OBD", s: "Personnel", ac: "Acc.",
+            abT: "LE STANDARD VANGUARD", abS: "Intelligence globale des actifs pour l'entreprise moderne.",
+            abP1: "Vanguard Global livre les outils de précision pour sécuriser et optimiser vos actifs.",
+            abMT: "Notre Mission", abMP: "Fournir un œil vigilant sur vos actifs les plus précieux grâce à l'innovation.",
+            abGT: "Portée Mondiale", abGP: "Matériel conçu pour la connectivité internationale avec un support local dédié.",
+            abST: "Sécurité Adaptative", abSP: "Configurations sur mesure développées pour répondre aux exigences spécifiques de vos opérations.",
+            fName: "Nom *", cName: "Entreprise *", email: "Email *", phone: "Tel *", help: "Message *", selectC: "Pays *", submit: "ENVOYER"
         }
     };
 
-    function nav(id) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        const target = document.getElementById(id);
-        if(target) target.classList.add('active');
-        if(id === 'prod-menu') renderCats();
-        window.scrollTo(0,0);
-    }
-
-    function renderCats() {
-        const lang = document.getElementById('langSelect').value;
-        const t = TXT[lang] || TXT.en;
-        const cats = [
-            { id: 'vehicle', n: t.v, i: '🚗' }, { id: 'asset', n: t.a, i: '📦' },
-            { id: 'dashcam', n: t.dc, i: '📹' }, { id: 'obd', n: t.o, i: '🔌' },
-            { id: 'personal', n: t.s, i: '👤' }, { id: 'acc', n: t.ac, i: '⚙️' }
-        ];
-        document.getElementById('cat-anchor').innerHTML = cats.map(c => 
-            `<div class="cat-card" onclick="renderList('${c.id}')"><span>${c.i}</span>${c.n}</div>`
-        ).join('');
-    }
-
-    function renderList(cat) {
-        nav('list-view');
-        const items = WAREHOUSE.filter(d => d.cat.includes(cat));
-        document.getElementById('gridAnchor').innerHTML = items.map(d => {
-            const tags = d.features ? d.features.map(f => `<div class="f-tag"><span class="f-icon">${f.icon}</span> ${f.label}</div>`).join('') : '';
-            return `
-                <div class="card">
-                    <div class="card-img">
-                        <img src="IMAGES/${cat.toLowerCase()}/${d.id.toLowerCase()}.png" 
-                             onerror="this.src='IMAGES/ui/coming-soon.png';">
-                    </div>
-                    <div class="card-info">
-                        <div>
-                            <h4 style="margin:0; font-weight:800;">${d.name}</h4>
-                            <div class="f-grid">${tags}</div>
-                            <p style="font-size:0.75rem; color:#64748b;">${d.desc}</p>
-                        </div>
-                        <div style="display:flex; gap:10px; margin-top:auto;">
-                            <a href="DOCS/SPECS/${d.id.toLowerCase()}.pdf" target="_blank" class="btn-v" style="flex:1; background:#64748b;">SPECS</a>
-                            <button onclick="openForm('${d.id}')" class="btn-v" style="flex:1;">INQUIRY</button>
-                        </div>
-                    </div>
-                </div>`;
-        }).join('');
-    }
-
-    function openForm(t) {
-        document.getElementById('f-title').innerText = t;
-        document.getElementById('email-subject').value = "GeoTrackPro Inquiry: " + t;
-        nav('contact');
-    }
-
     function updateLang(l) {
         const t = TXT[l] || TXT.en;
+        
+        // Update Static Text
         document.getElementById('h-title').innerText = t.h;
         document.getElementById('nav-prod').innerText = t.p;
-        if(document.getElementById('ab-title')) {
-            document.getElementById('ab-title').innerText = t.abT;
+        
+        const abTitle = document.getElementById('ab-title');
+        if(abTitle) {
+            abTitle.innerText = t.abT;
             document.getElementById('ab-subtitle').innerText = t.abS;
             document.getElementById('ab-p1').innerText = t.abP1;
             document.getElementById('ab-m-p').innerText = t.abMP;
             document.getElementById('ab-g-p').innerText = t.abGP;
             document.getElementById('ab-s-p').innerText = t.abSP;
         }
+
+        // Force the category grid to re-render in the new language
+        renderCats();
+        
+        // Update Form Placeholders
+        document.getElementById('in-name').placeholder = t.fName;
+        document.getElementById('btn-submit').innerText = t.submit;
+    }
     }
 
     setInterval(() => {
@@ -266,6 +245,7 @@
 </script>
 </body>
 </html>
+
 
 
 
