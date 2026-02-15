@@ -245,7 +245,7 @@
         return `
             <div class="card">
                 <div class="card-img">
-                    <img src="IMAGES/${cat.toUpperCase()}/${d.id.toUpperCase()}.png" 
+                    <img src="IMAGES/${cat.toLowerCase()}/${d.id.toLowerCase()}.png" 
                          onerror="this.src='IMAGES/ui/coming-soon.png'; this.style.opacity='0.5';">
                 </div>
                 <div class="card-info">
@@ -338,4 +338,5 @@ function resetForm() {
 </script>
 </body>
 </html>
+
 
