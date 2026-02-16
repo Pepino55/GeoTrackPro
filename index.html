@@ -170,119 +170,72 @@
         { id: "CI01", cat: ["acc"], name: "CI01", desc: "Camera accessory.", features:[{icon:"⚙️",label:"Acc"}] }
     ];
 
-    const TXT = {
-        en: { 
-            h: "VANGUARD GLOBAL", p: "PRODUCTS", ab: "ABOUT US",
-            v: "Vehicle", m: "Moto", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", tg: "Tags",
-            abT: "THE VANGUARD STANDARD", abS: "Global Asset Intelligence for the Modern Enterprise.",
-            abP1: "Vanguard Global provides the hardware and telemetry needed to secure assets and eliminate the variables that cost you revenue.",
-            abMT: "Our Mission", abMP: "To provide an unblinking eye over your most valuable assets, bridging the gap between physical logistics and digital oversight.",
-            abGT: "Global Reach", abGP: "Hardware engineered for international connectivity, backed by a support network that understands local enterprise needs.",
-            abST: "Adaptive Security", abSP: "Custom-tailored configurations developed by our technical team to meet the specific demands of your operational landscape.",
-            fName: "Full Name *", cName: "Company *", email: "Email *", phone: "Phone *", help: "Message *", selectC: "Select Country *", submit: "SEND INQUIRY"
-        },
-        it: { 
-            h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "CHI SIAMO",
-            v: "Veicoli", m: "Moto", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", tg: "Tags",
-            abT: "LO STANDARD VANGUARD", abS: "Intelligenza globale per l'impresa moderna.",
-            abP1: "Vanguard Global fornisce strumenti di precisione per proteggere i vostri asset strategici.",
-            abMT: "Missione", abMP: "Eliminare i punti ciechi con l'innovazione tecnologica e la supervisione digitale.",
-            abGT: "Portata Globale", abGP: "Hardware progettato per la connettività internazionale e il supporto locale dedicato.",
-            abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura sviluppate dal nostro team tecnico per le vostre esigenze operative.",
-            fName: "Nome Completo *", cName: "Azienda *", email: "Email *", phone: "Telefono *", help: "Messaggio *", selectC: "Seleziona Paese *", submit: "INVIA RICHIESTA"
-        },
-        es: { 
-            h: "VANGUARDIA GLOBAL", p: "PRODUCTOS", ab: "NOSOTROS",
-            v: "Vehículo", m: "Moto", a: "Activos", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", tg: "Tags",
-            abT: "EL ESTÁNDAR VANGUARD", abS: "Inteligencia de activos para la empresa moderna.",
-            abP1: "Vanguard Global entrega herramientas de precisión para asegurar y optimizar sus activos.",
-            abMT: "Nuestra Misión", abMP: "Proporcionar una visión constante de sus activos más valiosos mediante innovación.",
-            abGT: "Alcance Global", abGP: "Hardware diseñado para conectividad internacional con soporte local experto.",
-            abST: "Seguridad Adaptativa", abSP: "Configuraciones personalizadas desarrolladas para cumplir con las demandas de su flujo de trabajo.",
-            fName: "Nombre *", cName: "Empresa *", email: "Email *", phone: "Teléfono *", help: "Mensaje *", selectC: "País *", submit: "ENVIAR"
-        },
-        fr: { 
-            h: "VANGUARD GLOBAL", p: "PRODUITS", ab: "À PROPOS",
-            v: "Véhicule", m: "Moto", a: "Actif", dc: "Dashcam", o: "OBD", s: "Personnel", ac: "Acc.", tg: "Tags",
-            abT: "LE STANDARD VANGUARD", abS: "Intelligence globale des actifs pour l'entreprise moderne.",
-            abP1: "Vanguard Global livre les outils de précision pour sécuriser et optimiser vos actifs.",
-            abMT: "Notre Mission", abMP: "Fournir un œil vigilant sur vos actifs les plus précieux grâce à l'innovation.",
-            abGT: "Portée Mondiale", abGP: "Matériel conçu pour la connectivité internationale avec un support local dédié.",
-            abST: "Sicurezza Adattiva", abSP: "Configurations sur mesure développées pour répondre aux exigences spécifiques de vos opérations.",
-            fName: "Nom *", cName: "Entreprise *", email: "Email *", phone: "Tel *", help: "Message *", selectC: "Pays *", submit: "ENVOYER"
-        }
+    /* --- UPDATED TXT OBJECT WITH MISSING KEYS --- */
+const TXT = {
+    en: { 
+        h: "VANGUARD GLOBAL", p: "PRODUCTS", ab: "ABOUT US",
+        v: "Vehicle", m: "Moto", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", tg: "Tags",
+        fName: "Full Name *", cName: "Company Name *", email: "Business Email *", phone: "Phone Number *", help: "How can we help you? *", selectC: "Select Country *", submit: "SEND OFFICIAL INQUIRY"
+    },
+    it: { 
+        h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "CHI SIAMO",
+        v: "Veicoli", m: "Moto", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", tg: "Tags",
+        fName: "Nome Completo *", cName: "Azienda *", email: "Email Aziendale *", phone: "Telefono *", help: "Come possiamo aiutare? *", selectC: "Seleziona Paese *", submit: "INVIA RICHIESTA"
+    },
+    es: { 
+        h: "VANGUARDIA GLOBAL", p: "PRODUCTOS", ab: "NOSOTROS",
+        v: "Vehículo", m: "Moto", a: "Activos", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", tg: "Tags",
+        fName: "Nombre Completo *", cName: "Nombre de la Empresa *", email: "Correo Electrónico *", phone: "Teléfono *", help: "¿Cómo podemos ayudarle? *", selectC: "Seleccionar País *", submit: "ENVIAR CONSULTA"
+    },
+    fr: { 
+        h: "VANGUARD GLOBAL", p: "PRODUITS", ab: "À PROPOS",
+        v: "Véhicule", m: "Moto", a: "Actif", dc: "Dashcam", o: "OBD", s: "Personnel", ac: "Acc.", tg: "Tags",
+        fName: "Nom Complet *", cName: "Nom de l'entreprise *", email: "E-mail professionnel *", phone: "Téléphone *", help: "Comment pouvons-nous vous aider ? *", selectC: "Choisissez le pays *", submit: "ENVOYER LA DEMANDE"
+    }
+};
+
+/* --- ENHANCED UPDATE LANG FUNCTION --- */
+function updateLang(l) {
+    const t = TXT[l] || TXT.en;
+    
+    // Header & Nav
+    document.getElementById('h-title').innerText = t.h;
+    document.getElementById('nav-prod').innerText = t.p;
+    
+    // About Section (if active)
+    const abT = document.getElementById('ab-title');
+    if(abT && t.abT) {
+        abT.innerText = t.abT;
+        document.getElementById('ab-subtitle').innerText = t.abS;
+        document.getElementById('ab-p1').innerText = t.abP1;
+        document.getElementById('ab-m-p').innerText = t.abMP;
+        document.getElementById('ab-g-p').innerText = t.abGP;
+        document.getElementById('ab-s-p').innerText = t.abSP;
+    }
+    
+    // Form Placeholders - Targeting by ID to ensure precision
+    const fields = {
+        'in-name': t.fName,
+        'in-comp': t.cName,
+        'in-email': t.email,
+        'in-tel': t.phone,
+        'in-msg': t.help
     };
 
-    function nav(id) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        const target = document.getElementById(id);
-        if(target) target.classList.add('active');
-        if(id === 'prod-menu') renderCats();
-        window.scrollTo(0,0);
+    for (let [id, val] of Object.entries(fields)) {
+        const el = document.getElementById(id);
+        if(el) el.placeholder = val;
     }
 
-    function renderCats() {
-        const lang = document.getElementById('langSelect').value;
-        const t = TXT[lang] || TXT.en;
-        const cats = [
-            { id: 'vehicle', n: t.v, i: '🚗' }, { id: 'asset', n: t.a, i: '📦' },
-            { id: 'dashcam', n: t.dc, i: '📹' }, { id: 'obd', n: t.o, i: '🔌' },
-            { id: 'personal', n: t.s, i: '👤' }, { id: 'tags', n: t.tg, i: '🏷️' }, { id: 'acc', n: t.ac, i: '⚙️' }
-        ];
-        document.getElementById('cat-anchor').innerHTML = cats.map(c => 
-            `<div class="cat-card" onclick="renderList('${c.id}')"><span>${c.i}</span>${c.n}</div>`
-        ).join('');
-    }
+    // Form Select & Button
+    const countrySelect = document.getElementById('in-country');
+    if(countrySelect) countrySelect.options[0].text = t.selectC;
+    
+    const submitBtn = document.getElementById('btn-submit');
+    if(submitBtn) submitBtn.innerText = t.submit;
 
-    function renderList(cat) {
-        nav('list-view');
-        const items = WAREHOUSE.filter(d => d.cat.includes(cat));
-        document.getElementById('gridAnchor').innerHTML = items.map(d => {
-            const tags = d.features ? d.features.map(f => `<div class="f-tag"><span class="f-icon">${f.icon}</span> ${f.label}</div>`).join('') : '';
-            return `
-                <div class="card">
-                    <div class="card-img">
-                        <img src="IMAGES/${cat.toLowerCase()}/${d.id.toLowerCase()}.png" 
-                             onerror="this.src='IMAGES/ui/coming-soon.png';">
-                    </div>
-                    <div class="card-info">
-                        <div>
-                            <h4 style="margin:0; font-weight:800;">${d.name}</h4>
-                            <div class="f-grid">${tags}</div>
-                            <p style="font-size:0.75rem; color:#64748b;">${d.desc}</p>
-                        </div>
-                        <div style="display:flex; gap:10px; margin-top:auto;">
-                            <a href="DOCS/SPECS/${d.id.toLowerCase()}.pdf" target="_blank" class="btn-v" style="flex:1; background:#64748b;">SPECS</a>
-                            <button onclick="openForm('${d.id}')" class="btn-v" style="flex:1;">INQUIRY</button>
-                        </div>
-                    </div>
-                </div>`;
-        }).join('');
-    }
-
-    function openForm(t) {
-        document.getElementById('f-title').innerText = t;
-        document.getElementById('email-subject').value = "GeoTrackPro Inquiry: " + t;
-        nav('contact');
-    }
-
-    function updateLang(l) {
-        const t = TXT[l] || TXT.en;
-        document.getElementById('h-title').innerText = t.h;
-        document.getElementById('nav-prod').innerText = t.p;
-        const abT = document.getElementById('ab-title');
-        if(abT) {
-            abT.innerText = t.abT;
-            document.getElementById('ab-subtitle').innerText = t.abS;
-            document.getElementById('ab-p1').innerText = t.abP1;
-            document.getElementById('ab-m-p').innerText = t.abMP;
-            document.getElementById('ab-g-p').innerText = t.abGP;
-            document.getElementById('ab-s-p').innerText = t.abSP;
-        }
-        renderCats();
-        document.getElementById('in-name').placeholder = t.fName;
-        document.getElementById('btn-submit').innerText = t.submit;
-    }
+    renderCats(); // Refresh categories to update their labels
+}
 
     setInterval(() => {
         const clock = document.getElementById('clock');
@@ -293,3 +246,4 @@
 </script>
 </body>
 </html>
+
