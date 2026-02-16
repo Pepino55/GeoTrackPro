@@ -24,25 +24,26 @@
         .cat-card:hover { border-color: var(--accent); transform: translateY(-5px); }
         .cat-card span { font-size: 2rem; display: block; margin-bottom: 8px; }
 
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 450px)); gap: 25px; margin-top: 30px; justify-content: center; }
-        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 25px; display: flex; gap: 20px; align-items: stretch; height: 320px; }
-        .card-img { flex: 0 0 130px; background: #fcfcfc; border-radius: 15px; display: flex; align-items: center; justify-content: center; padding: 10px; border: 1px solid #f1f5f9; }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr)); gap: 25px; margin-top: 30px; }
+        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 25px; display: flex; gap: 20px; height: 280px; align-items: center; }
+        .card-img { flex: 0 0 120px; background: #fcfcfc; border-radius: 15px; display: flex; align-items: center; justify-content: center; padding: 10px; }
         .card-img img { width: 100%; max-height: 140px; object-fit: contain; }
-        .card-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+        .card-info { flex: 1; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+        .feat-pill { background: #f1f5f9; padding: 4px 8px; border-radius: 6px; font-size: 0.65rem; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; }
 
         .contact-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: white; padding: 40px; border-radius: 30px; border: 1px solid #e2e8f0; }
-        input, textarea, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #cbd5e1; margin-bottom: 10px; font-size: 0.9rem; }
+        input, textarea, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #cbd5e1; margin-bottom: 10px; }
         
         footer { background: var(--navy); color: white; height: 50px; position: fixed; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; font-size: 0.65rem; z-index: 10000; }
         .led-dot { height: 8px; width: 8px; background: #00FF00; border-radius: 50%; box-shadow: 0 0 8px #00FF00; display: inline-block; margin-left: 5px; }
 
-        @media (max-width: 800px) { .contact-stack { grid-template-columns: 1fr; } header { height: auto; flex-direction: column; padding: 10px; } }
+        @media (max-width: 800px) { .contact-stack { grid-template-columns: 1fr; } header { height: auto; flex-direction: column; padding: 15px; } }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="display:flex; align-items:center; gap:15px;">
+    <div style="display:flex; align-items:center; gap:12px;">
         <img src="IMAGES/ui/logo.png" height="30" onclick="nav('home')" style="cursor:pointer">
         <button onclick="nav('about-us')" class="btn-v" id="btn-about" style="background:#475569;">About Us</button>
         <button onclick="nav('home')" class="btn-v" id="btn-home" style="background:#1e293b;">Home</button>
@@ -52,7 +53,7 @@
         <button onclick="openForm('CONTACT')" class="btn-v" id="btn-contact-nav">Contact</button>
         <button onclick="openForm('DEMO REQUEST')" class="btn-v" id="btn-demo-nav" style="background:#6366f1;">Demo Request</button>
         <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" id="btn-platform" style="background:#059669;">PLATFORM</button>
-        <select id="langSelect" onchange="updateLang(this.value)" style="width:auto; margin:0; padding:5px; border-radius:10px; background:var(--navy); color:white; border:none; font-weight:800; cursor:pointer;">
+        <select id="langSelect" onchange="updateLang(this.value)" style="background:var(--navy); color:white; border:none; padding:5px; border-radius:8px; font-weight:800; cursor:pointer;">
             <option value="en">EN</option><option value="it">IT</option><option value="es">ES</option><option value="fr">FR</option>
         </select>
     </div>
@@ -69,21 +70,21 @@
 </div>
 
 <div id="about-us" class="view">
-    <div style="max-width: 1100px; margin: 0 auto; line-height: 1.8;">
-        <h2 id="ab-title" style="font-size: 2.5rem; font-weight: 800; border-bottom: 4px solid var(--accent); display: inline-block; margin-bottom: 30px;">THE VANGUARD STANDARD</h2>
-        <p id="ab-subtitle" style="font-size: 1.1rem; font-weight: 600;"></p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
+    <div style="max-width: 1000px; margin: 0 auto;">
+        <h2 id="ab-title" style="font-size: 2.5rem; font-weight: 800; border-bottom: 4px solid var(--accent); display: inline-block; margin-bottom: 20px;">THE VANGUARD STANDARD</h2>
+        <p id="ab-subtitle" style="font-size: 1.1rem; font-weight: 600; margin-bottom: 40px;">Bridging physical logistics and digital oversight.</p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
             <div style="background: white; padding: 25px; border-radius: 20px; border: 1px solid #e2e8f0;">
-                <h3 id="ab-m-title" style="margin-top:0; color: var(--accent);">Our Mission</h3>
-                <p id="ab-m-p"></p>
+                <h3 id="ab-m-title" style="color:var(--accent)">Our Mission</h3>
+                <p id="ab-m-p">Bridging physical logistics and digital oversight.</p>
             </div>
             <div style="background: white; padding: 25px; border-radius: 20px; border: 1px solid #e2e8f0;">
-                <h3 id="ab-g-title" style="margin-top:0; color: var(--accent);">Global Reach</h3>
-                <p id="ab-g-p"></p>
+                <h3 id="ab-g-title" style="color:var(--accent)">Global Reach</h3>
+                <p id="ab-g-p">Engineered for international connectivity.</p>
             </div>
             <div style="background: white; padding: 25px; border-radius: 20px; border: 1px solid #e2e8f0;">
-                <h3 id="ab-s-title" style="margin-top:0; color: var(--accent);">Adaptive Security</h3>
-                <p id="ab-s-p"></p>
+                <h3 id="ab-s-title" style="color:var(--accent)">Adaptive Security</h3>
+                <p id="ab-s-p">Custom configurations for specific demands.</p>
             </div>
         </div>
     </div>
@@ -97,148 +98,4 @@
 </div>
 
 <div id="contact" class="view">
-    <div class="contact-stack">
-        <form id="contactForm" action="https://formspree.io/f/mwvnvzee" method="POST">
-            <h2 id="f-title" style="margin:0 0 20px 0;">CONTACT</h2>
-            <input type="text" name="name" id="in-name" required>
-            <input type="text" name="company" id="in-comp" required>
-            <input type="email" name="email" id="in-email" required>
-            <select name="country" id="in-country" required>
-                <option value="" id="opt-country">Select Country *</option>
-                <option value="US">USA</option><option value="IT">Italy</option><option value="ES">Spain</option><option value="FR">France</option><option value="OTHER">Other</option>
-            </select>
-            <textarea name="message" id="in-msg" rows="4" required></textarea>
-            <button type="submit" id="btn-submit" class="btn-v" style="width:100%; height:45px;">SEND OFFICIAL INQUIRY</button>
-        </form>
-        <div style="border-radius:20px; overflow:hidden; background:#eee; min-height: 400px; border: 1px solid #e2e8f0;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937611493!2d-73.9873196845939!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25850701bc9d7%3A0xe54d6a9787e9e62b!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1675865423456!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-        </div>
-    </div>
-</div>
-
-<footer>
-    <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led-dot"></span></div>
-    <div style="display:flex; gap:20px;">
-       <a href="DOCS/LEGAL/terms-of-service.pdf" target="_blank" id="footer-terms" style="color:white; text-decoration:none; font-weight:800;">TERMS</a>
-       <a href="DOCS/LEGAL/privacy-policy.pdf" target="_blank" id="footer-privacy" style="color:white; text-decoration:none; font-weight:800;">PRIVACY</a>
-    </div>
-</footer>
-
-<script>
-    window.nav = function(id) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        const target = document.getElementById(id);
-        if(target) {
-            target.classList.add('active');
-            if(id === 'prod-menu') renderCats();
-            window.scrollTo(0,0);
-        }
-    };
-
-    const WAREHOUSE = [
-        { id: "VL103", cat: ["vehicle"], name: "VL103", desc: "Hardwired vehicle tracker." },
-        { id: "VL106", cat: ["vehicle"], name: "VL106", desc: "LTE vehicle tracker." },
-        { id: "VL111", cat: ["vehicle"], name: "VL111", desc: "High-IO LTE terminal." },
-        { id: "LL701", cat: ["asset"], name: "LL701", desc: "Long standby tracker." },
-        { id: "LL702", cat: ["asset"], name: "LL702", desc: "Wireless asset tracker." },
-        { id: "JC400", cat: ["dashcam"], name: "JC400", desc: "Pro 4G Dashcam." },
-        { id: "JC261", cat: ["dashcam"], name: "JC261", desc: "LTE AI Dashcam." },
-        { id: "VL505", cat: ["obd"], name: "VL505", desc: "Plug & Play OBDII." },
-        { id: "QBIT-M", cat: ["personal"], name: "QBIT M", desc: "Mini personal GPS." },
-        { id: "LL708", cat: ["tags"], name: "LL708", desc: "Asset Tagging." },
-        { id: "CE02", cat: ["acc"], name: "CE02", desc: "Camera accessory." }
-        // (Full inventory is re-enabled in the logic)
-    ];
-
-    const TXT = {
-        en: { 
-            h: "VANGUARD GLOBAL", p: "PRODUCTS", ab: "About Us", home: "Home", contact: "Contact", demo: "Demo Request", plat: "PLATFORM", 
-            hCat: "Explore Catalog", hSales: "Contact Sales", back: "← Back",
-            v: "Vehicle", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", t: "Tags", 
-            abT: "THE VANGUARD STANDARD", abS: "Bridging physical logistics and digital oversight.", 
-            abMT: "Our Mission", abMP: "Bridging physical logistics and digital oversight.", 
-            abGT: "Global Reach", abGP: "Engineered for international connectivity.", 
-            abST: "Adaptive Security", abSP: "Custom configurations for specific demands.", 
-            fName: "Full Name *", fComp: "Company *", fEmail: "Email *", fSel: "Select Country *", fMsg: "How can we help? *", submit: "SEND INQUIRY", 
-            terms: "TERMS", priv: "PRIVACY"
-        },
-        it: { 
-            h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "Chi Siamo", home: "Home", contact: "Contatti", demo: "Richiedi Demo", plat: "PIATTAFORMA",
-            hCat: "Esplora Catalogo", hSales: "Contatta Vendite", back: "← Indietro",
-            v: "Veicoli", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", t: "Tags", 
-            abT: "LO STANDARD VANGUARD", abS: "Colmare il divario tra logistica e supervisione.", 
-            abMT: "Missione", abMP: "Colmare il divario tra logistica e supervisione digitale.", 
-            abGT: "Portata Globale", abGP: "Progettato per la connettività internazionale.", 
-            abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura per ogni esigenza.", 
-            fName: "Nome *", fComp: "Azienda *", fEmail: "Email *", fSel: "Paese *", fMsg: "Come possiamo aiutare? *", submit: "INVIA",
-            terms: "TERMINI", priv: "PRIVACY"
-        }
-    };
-
-    function renderCats() {
-        const lang = document.getElementById('langSelect').value;
-        const t = TXT[lang] || TXT.en;
-        const cats = [
-            { id: 'vehicle', n: t.v, i: '🚗' }, { id: 'asset', n: t.a, i: '📦' },
-            { id: 'dashcam', n: t.dc, i: '📹' }, { id: 'obd', n: t.o, i: '🔌' },
-            { id: 'personal', n: t.s, i: '👤' }, { id: 'tags', n: t.t, i: '🏷️' }, { id: 'acc', n: t.ac, i: '⚙️' }
-        ];
-        document.getElementById('cat-anchor').innerHTML = cats.map(c => 
-            `<div class="cat-card" onclick="renderList('${c.id}')"><span>${c.i}</span>${c.n}</div>`
-        ).join('');
-    }
-
-    function renderList(cat) {
-        window.nav('list-view');
-        const items = WAREHOUSE.filter(d => d.cat.includes(cat));
-        document.getElementById('gridAnchor').innerHTML = items.map(d => `
-            <div class="card">
-                <div class="card-img"><img src="IMAGES/${cat}/${d.id.toLowerCase()}.png" onerror="this.src='IMAGES/ui/coming-soon.png';"></div>
-                <div class="card-info">
-                    <div><h4 style="margin:0;">${d.name}</h4><p style="font-size:0.75rem;">${d.desc}</p></div>
-                    <div style="display:flex; gap:10px; margin-top:auto;">
-                        <a href="DOCS/SPECS/${d.id.toLowerCase()}.pdf" target="_blank" class="btn-v" style="flex:1; background:#64748b;">SPECS</a>
-                        <button onclick="openForm('${d.id}')" class="btn-v" style="flex:1;">INQUIRY</button>
-                    </div>
-                </div>
-            </div>`).join('');
-    }
-
-    function openForm(t) {
-        document.getElementById('f-title').innerText = t;
-        window.nav('contact');
-    }
-
-    function updateLang(l) {
-        const t = TXT[l] || TXT.en;
-        document.getElementById('h-title').innerText = t.h;
-        document.getElementById('nav-prod').innerText = t.p;
-        document.getElementById('btn-about').innerText = t.ab;
-        document.getElementById('btn-home').innerText = t.home;
-        document.getElementById('btn-contact-nav').innerText = t.contact;
-        document.getElementById('btn-demo-nav').innerText = t.demo;
-        document.getElementById('btn-platform').innerText = t.plat;
-        document.getElementById('h-btn-cat').innerText = t.hCat;
-        document.getElementById('h-btn-sales').innerText = t.hSales;
-        document.getElementById('btn-back-cat').innerText = t.back;
-        document.getElementById('ab-title').innerText = t.abT;
-        document.getElementById('ab-subtitle').innerText = t.abS;
-        document.getElementById('ab-m-p').innerText = t.abMP;
-        document.getElementById('ab-g-p').innerText = t.abGP;
-        document.getElementById('ab-s-p').innerText = t.abSP;
-        document.getElementById('in-name').placeholder = t.fName;
-        document.getElementById('in-comp').placeholder = t.fComp;
-        document.getElementById('in-email').placeholder = t.fEmail;
-        document.getElementById('opt-country').innerText = t.fSel;
-        document.getElementById('in-msg').placeholder = t.fMsg;
-        document.getElementById('btn-submit').innerText = t.submit;
-        document.getElementById('footer-terms').innerText = t.terms;
-        document.getElementById('footer-privacy').innerText = t.priv;
-        renderCats();
-    }
-
-    setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleString(); }, 1000);
-    window.onload = () => { updateLang('en'); };
-</script>
-</body>
-</html>
+    <div class="contact
