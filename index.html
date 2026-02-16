@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoTrackPro | Vanguard Enterprise v21.5</title>
+    <title>GeoTrackPro | Vanguard Enterprise v21.6</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #e8ddc7; --accent: #3E63DD; --navy: #0a0f1d; --whatsapp: #25D366; --header-h: 75px; }
+        :root { --gold: #e8ddc7; --accent: #3E63DD; --navy: #0a0f1d; --header-h: 75px; }
         * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
         body { margin: 0; background: #f8fafc; color: var(--navy); padding-bottom: 60px; }
         header { background: var(--gold); height: var(--header-h); position: fixed; top: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
@@ -20,7 +20,7 @@
         .cat-card:hover { border-color: var(--accent); transform: translateY(-5px); }
         .cat-card span { font-size: 2rem; display: block; margin-bottom: 8px; }
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 450px)); gap: 25px; margin-top: 30px; justify-content: center; }
-        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 25px; display: flex; gap: 20px; align-items: stretch; height: 320px; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 25px; display: flex; gap: 20px; align-items: stretch; height: 320px; }
         .card-img { flex: 0 0 130px; background: #fcfcfc; border-radius: 15px; display: flex; align-items: center; justify-content: center; padding: 10px; border: 1px solid #f1f5f9; }
         .card-img img { width: 100%; max-height: 140px; object-fit: contain; }
         .card-info { flex: 1; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
@@ -31,7 +31,7 @@
         input, textarea, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #cbd5e1; margin-bottom: 10px; font-size: 0.9rem; }
         footer { background: var(--navy); color: white; height: 50px; position: fixed; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; font-size: 0.65rem; z-index: 10000; }
         .led-dot { height: 8px; width: 8px; background: #00FF00; border-radius: 50%; box-shadow: 0 0 8px #00FF00; display: inline-block; margin-left: 5px; }
-        @media (max-width: 800px) { .contact-stack { grid-template-columns: 1fr; } header { flex-wrap: wrap; height: auto; padding: 10px; } }
+        @media (max-width: 800px) { .contact-stack { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -39,28 +39,26 @@
 <header>
     <div style="display:flex; align-items:center; gap:15px;">
         <img src="IMAGES/ui/logo.png" height="30" onclick="nav('home')" style="cursor:pointer" alt="Logo">
-        <button onclick="nav('about-us')" class="btn-v" style="background:#475569;">About Us</button>
-        <button onclick="nav('home')" class="btn-v" style="background:#1e293b;">Home</button>
+        <button onclick="nav('about-us')" class="btn-v" id="btn-about" style="background:#475569;">About Us</button>
+        <button onclick="nav('home')" class="btn-v" id="btn-home" style="background:#1e293b;">Home</button>
     </div>
     <div style="display:flex; gap:8px;">
         <button onclick="nav('prod-menu')" class="btn-v" id="nav-prod">PRODUCTS</button>
-        <button onclick="openForm('CONTACT US')" class="btn-v">Contact</button>
-        <button onclick="openForm('DEMO REQUEST')" class="btn-v" style="background:#6366f1;">Demo Request</button>
-        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" style="background:#059669;">PLATFORM</button>
+        <button onclick="openForm('CONTACT US')" class="btn-v" id="btn-contact-nav">Contact</button>
+        <button onclick="openForm('DEMO REQUEST')" class="btn-v" id="btn-demo-nav" style="background:#6366f1;">Demo Request</button>
+        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" id="btn-platform" style="background:#059669;">PLATFORM</button>
     </div>
-    <div>
-        <select id="langSelect" onchange="updateLang(this.value)" style="border-radius:20px; font-weight:800; font-size:0.6rem; padding: 8px 15px; background: var(--accent); color: white; border: none; width: auto; margin-bottom:0;">
-            <option value="en">EN</option><option value="it">IT</option><option value="es">ES</option><option value="fr">FR</option>
-        </select>
-    </div>
+    <select id="langSelect" onchange="updateLang(this.value)" style="border-radius:20px; font-weight:800; font-size:0.6rem; padding: 8px 15px; background: var(--accent); color: white; border: none; width: auto; cursor:pointer;">
+        <option value="en">EN</option><option value="it">IT</option><option value="es">ES</option><option value="fr">FR</option>
+    </select>
 </header>
 
 <div id="home" class="view active" style="padding:0;">
     <section class="hero">
         <h1 id="h-title" style="font-size: 3.5rem; font-weight: 800; margin:0;">VANGUARD GLOBAL</h1>
         <div style="display:flex; gap:15px; margin-top:20px;">
-            <button onclick="nav('prod-menu')" class="btn-v" style="padding:15px 40px;">Explore Catalog</button>
-            <button onclick="openForm('SALES CONSULTATION')" class="btn-v" style="background:white; color:black!important; padding:15px 40px;">Sales Consultation</button>
+            <button onclick="nav('prod-menu')" class="btn-v" id="h-btn-cat" style="padding:15px 40px;">Explore Catalog</button>
+            <button onclick="openForm('SALES CONSULTATION')" class="btn-v" id="h-btn-sales" style="background:white; color:black!important; padding:15px 40px;">Sales Consultation</button>
         </div>
     </section>
 </div>
@@ -86,12 +84,9 @@
     </div>
 </div>
 
-<div id="prod-menu" class="view">
-    <div class="cat-grid" id="cat-anchor"></div>
-</div>
-
+<div id="prod-menu" class="view"><div class="cat-grid" id="cat-anchor"></div></div>
 <div id="list-view" class="view">
-    <button onclick="nav('prod-menu')" class="btn-v" style="background:#64748b; margin-bottom:20px;">← Back to Categories</button>
+    <button onclick="nav('prod-menu')" class="btn-v" id="btn-back-cat" style="background:#64748b; margin-bottom:20px;">← Back to Categories</button>
     <div class="product-grid" id="gridAnchor"></div>
 </div>
 
@@ -99,21 +94,20 @@
     <div class="contact-stack">
         <form id="contactForm" action="https://formspree.io/f/mwvnvzee" method="POST">
             <h2 id="f-title" style="margin:0 0 20px 0;">CONTACT</h2>
-            <input type="text" name="name" id="in-name" placeholder="Full Name *" required>
-            <input type="text" name="company" id="in-comp" placeholder="Company Name *" required>
-            <input type="email" name="email" id="in-email" placeholder="Business Email *" required>
-            <input type="tel" name="phone" id="in-tel" placeholder="Phone Number *" required>
+            <input type="text" name="name" id="in-name" required>
+            <input type="text" name="company" id="in-comp" required>
+            <input type="email" name="email" id="in-email" required>
+            <input type="tel" name="phone" id="in-tel" required>
             <select name="country" id="in-country" required>
-                <option value="">Select Country *</option>
+                <option value="" id="opt-country">Select Country *</option>
                 <option value="US">United States</option><option value="IT">Italy</option><option value="ES">Spain</option><option value="FR">France</option><option value="GLOBAL">Other</option>
             </select>
             <input type="hidden" name="_subject" id="email-subject">
-            <textarea name="message" id="in-msg" rows="4" placeholder="How can we help? *" required></textarea>
+            <textarea name="message" id="in-msg" rows="4" required></textarea>
             <button type="submit" id="btn-submit" class="btn-v" style="width:100%; height:45px;">SEND OFFICIAL INQUIRY</button>
         </form>
         <div style="border-radius:20px; overflow:hidden; background:#eee; min-height: 400px;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.1422937611493!2d-73.98731968459377!3d40.75889497932681!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25855c6480299%3A0x55194ec5a1ae072e!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1634567890123!5m2!1sen!2sus" 
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1!2d0!3d0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 </div>
@@ -121,8 +115,8 @@
 <footer>
     <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led-dot"></span></div>
     <div style="display:flex; gap:20px;">
-       <a href="DOCS/LEGAL/terms-of-service.pdf" target="_blank" style="color:white; text-decoration:none;">TERMS</a>
-       <a href="DOCS/LEGAL/privacy-policy.pdf" target="_blank" style="color:white; text-decoration:none;">PRIVACY</a>
+       <a href="DOCS/LEGAL/terms-of-service.pdf" target="_blank" id="footer-terms" style="color:white; text-decoration:none;">TERMS</a>
+       <a href="DOCS/LEGAL/privacy-policy.pdf" target="_blank" id="footer-privacy" style="color:white; text-decoration:none;">PRIVACY</a>
     </div>
 </footer>
 
@@ -130,15 +124,15 @@
     const WAREHOUSE = [
         { id: "VL103", cat: ["vehicle"], name: "VL103", desc: "Hardwired vehicle tracker.", features:[{icon:"📡",label:"4G"},{icon:"⚡",label:"Power"}] },
         { id: "VL106", cat: ["vehicle"], name: "VL106", desc: "LTE vehicle tracker.", features:[{icon:"🛰️",label:"GNSS"}] },
-        { id: "VL111", cat: ["vehicle", "motorcycle"], name: "VL111", desc: "High-IO LTE terminal.", features:[{icon:"📡",label:"4G"},{icon:"✂️",label:"Cut-off"}] },
-        { id: "VL113", cat: ["vehicle", "motorcycle"], name: "VL113", desc: "Smart waterproof tracker.", features:[{icon:"🛡️",label:"IP66"},{icon:"⚡",label:"9-90V"}] },
+        { id: "VL111", cat: ["vehicle", "motorcycle"], name: "VL111", desc: "High-IO LTE terminal.", features:[{icon:"📡",label:"4G"}] },
+        { id: "VL113", cat: ["vehicle", "motorcycle"], name: "VL113", desc: "Smart waterproof tracker.", features:[{icon:"🛡️",label:"IP66"}] },
         { id: "VL808", cat: ["vehicle"], name: "VL808", desc: "Entry-level tracker.", features:[{icon:"📍",label:"LBS"}] },
         { id: "LL701", cat: ["asset"], name: "LL701", desc: "Long standby tracker.", features:[{icon:"🔋",label:"Standby"}] },
         { id: "LL702", cat: ["asset"], name: "LL702", desc: "Wireless asset tracker.", features:[{icon:"📦",label:"Asset"}] },
         { id: "LL301", cat: ["asset"], name: "LL301", desc: "Powerful wireless tracker.", features:[{icon:"🔋",label:"Big Battery"}] },
         { id: "LL744", cat: ["asset"], name: "LL744", desc: "Slim asset tracker.", features:[{icon:"📏",label:"Ultra-slim"}] },
-        { id: "LL708", cat: ["tags"], name: "LL708 Asset Tag", desc: "Bluetooth/LTE Asset Tagging for precise indoor/outdoor tracking.", features:[{icon:"🏷️",label:"BLE 5.0"},{icon:"🔋",label:"3 Year Bat"}] },
-        { id: "VL505", cat: ["obd"], name: "VL505", desc: "Plug & Play OBDII.", features:[{icon:"🔌",label:"OBDII"},{icon:"📊",label:"CAN"}] },
+        { id: "LL708", cat: ["tags"], name: "LL708 Asset Tag", desc: "Bluetooth/LTE Asset Tagging.", features:[{icon:"🏷️",label:"BLE 5.0"}] },
+        { id: "VL505", cat: ["obd"], name: "VL505", desc: "Plug & Play OBDII.", features:[{icon:"🔌",label:"OBDII"}] },
         { id: "QBIT-M", cat: ["personal"], name: "QBIT M", desc: "Mini personal GPS.", features:[{icon:"👤",label:"Personal"}] },
         { id: "PL601", cat: ["personal"], name: "PL601", desc: "Advanced personal GPS.", features:[{icon:"🔊",label:"Voice"}] },
         { id: "PL200", cat: ["personal"], name: "PL200", desc: "Personal safety tracker.", features:[{icon:"🚨",label:"SOS"}] },
@@ -159,14 +153,33 @@
     ];
 
     const TXT = {
-        en: { h: "VANGUARD GLOBAL", p: "PRODUCTS", v: "Vehicle", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", t: "Tags", abT: "THE VANGUARD STANDARD", abS: "Global Asset Intelligence for the Modern Enterprise.", abMT: "Our Mission", abMP: "To bridge the gap between physical and digital oversight.", abGT: "Global Reach", abGP: "Hardware engineered for international connectivity.", abST: "Adaptive Security", abSP: "Custom configurations for specific demands.", fName: "Full Name *", submit: "SEND INQUIRY" },
-        it: { h: "VANGUARD GLOBALE", p: "PRODOTTI", v: "Veicoli", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", t: "Tags", abT: "LO STANDARD VANGUARD", abS: "Intelligenza asset globale.", abMT: "Missione", abMP: "Colmare il divario tra logistica fisica e supervisione digitale.", abGT: "Portata Globale", abGP: "Hardware progettato per la connettività internazionale.", abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura per le vostre esigenze.", fName: "Nome Completo *", submit: "INVIA RICHIESTA" }
+        en: { 
+            h: "VANGUARD GLOBAL", p: "PRODUCTS", ab: "About Us", home: "Home", contact: "Contact", demo: "Demo Request", plat: "PLATFORM", 
+            hCat: "Explore Catalog", hSales: "Sales Consultation", back: "← Back to Categories",
+            v: "Vehicle", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", t: "Tags", 
+            abT: "THE VANGUARD STANDARD", abS: "Global Asset Intelligence for the Modern Enterprise.", 
+            abMT: "Our Mission", abMP: "Bridging physical logistics and digital oversight.", 
+            abGT: "Global Reach", abGP: "Engineered for international connectivity.", 
+            abST: "Adaptive Security", abSP: "Custom configurations for specific demands.", 
+            fName: "Full Name *", fComp: "Company *", fEmail: "Email *", fPhone: "Phone *", fSel: "Select Country *", fMsg: "How can we help? *", submit: "SEND INQUIRY", 
+            terms: "TERMS", priv: "PRIVACY"
+        },
+        it: { 
+            h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "Chi Siamo", home: "Home", contact: "Contatti", demo: "Richiedi Demo", plat: "PIATTAFORMA",
+            hCat: "Esplora Catalogo", hSales: "Consulenza Vendite", back: "← Torna alle Categorie",
+            v: "Veicoli", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", t: "Tags", 
+            abT: "LO STANDARD VANGUARD", abS: "Intelligenza asset globale per l'impresa moderna.", 
+            abMT: "Missione", abMP: "Colmare il divario tra logistica e supervisione digitale.", 
+            abGT: "Portata Globale", abGP: "Progettato per la connettività internazionale.", 
+            abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura per ogni esigenza.", 
+            fName: "Nome Completo *", fComp: "Azienda *", fEmail: "Email *", fPhone: "Telefono *", fSel: "Seleziona Paese *", fMsg: "Come possiamo aiutare? *", submit: "INVIA RICHIESTA",
+            terms: "TERMINI", priv: "PRIVACY"
+        }
     };
 
     function nav(id) {
         document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        const target = document.getElementById(id);
-        if(target) target.classList.add('active');
+        document.getElementById(id).classList.add('active');
         if(id === 'prod-menu') renderCats();
         window.scrollTo(0,0);
     }
@@ -187,24 +200,22 @@
     function renderList(cat) {
         nav('list-view');
         const items = WAREHOUSE.filter(d => d.cat.includes(cat));
-        document.getElementById('gridAnchor').innerHTML = items.map(d => {
-            const tags = d.features ? d.features.map(f => `<div class="f-tag"><span class="f-icon">${f.icon}</span> ${f.label}</div>`).join('') : '';
-            return `<div class="card">
+        document.getElementById('gridAnchor').innerHTML = items.map(d => `
+            <div class="card">
                 <div class="card-img"><img src="IMAGES/${cat.toLowerCase()}/${d.id.toLowerCase()}.png" onerror="this.src='IMAGES/ui/coming-soon.png';"></div>
                 <div class="card-info">
-                    <div><h4 style="margin:0; font-weight:800;">${d.name}</h4><div class="f-grid">${tags}</div><p style="font-size:0.75rem; color:#64748b;">${d.desc}</p></div>
+                    <div><h4 style="margin:0; font-weight:800;">${d.name}</h4><p style="font-size:0.75rem; color:#64748b;">${d.desc}</p></div>
                     <div style="display:flex; gap:10px; margin-top:auto;">
                         <a href="DOCS/SPECS/${d.id.toLowerCase()}.pdf" target="_blank" class="btn-v" style="flex:1; background:#64748b;">SPECS</a>
                         <button onclick="openForm('${d.id}')" class="btn-v" style="flex:1;">INQUIRY</button>
                     </div>
                 </div>
-            </div>`;
-        }).join('');
+            </div>`).join('');
     }
 
     function openForm(t) {
         document.getElementById('f-title').innerText = t;
-        document.getElementById('email-subject').value = "GeoTrackPro Inquiry: " + t;
+        document.getElementById('email-subject').value = "Inquiry: " + t;
         nav('contact');
     }
 
@@ -212,23 +223,32 @@
         const t = TXT[l] || TXT.en;
         document.getElementById('h-title').innerText = t.h;
         document.getElementById('nav-prod').innerText = t.p;
-        if(document.getElementById('ab-title')) {
-            document.getElementById('ab-title').innerText = t.abT;
-            document.getElementById('ab-subtitle').innerText = t.abS;
-            document.getElementById('ab-m-p').innerText = t.abMP;
-            document.getElementById('ab-g-p').innerText = t.abGP;
-            document.getElementById('ab-s-p').innerText = t.abSP;
-        }
-        renderCats();
+        document.getElementById('btn-about').innerText = t.ab;
+        document.getElementById('btn-home').innerText = t.home;
+        document.getElementById('btn-contact-nav').innerText = t.contact;
+        document.getElementById('btn-demo-nav').innerText = t.demo;
+        document.getElementById('btn-platform').innerText = t.plat;
+        document.getElementById('h-btn-cat').innerText = t.hCat;
+        document.getElementById('h-btn-sales').innerText = t.hSales;
+        document.getElementById('btn-back-cat').innerText = t.back;
+        document.getElementById('ab-title').innerText = t.abT;
+        document.getElementById('ab-subtitle').innerText = t.abS;
+        document.getElementById('ab-m-title').innerText = t.abMT; document.getElementById('ab-m-p').innerText = t.abMP;
+        document.getElementById('ab-g-title').innerText = t.abGT; document.getElementById('ab-g-p').innerText = t.abGP;
+        document.getElementById('ab-s-title').innerText = t.abST; document.getElementById('ab-s-p').innerText = t.abSP;
         document.getElementById('in-name').placeholder = t.fName;
+        document.getElementById('in-comp').placeholder = t.fComp;
+        document.getElementById('in-email').placeholder = t.fEmail;
+        document.getElementById('in-tel').placeholder = t.fPhone;
+        document.getElementById('opt-country').innerText = t.fSel;
+        document.getElementById('in-msg').placeholder = t.fMsg;
         document.getElementById('btn-submit').innerText = t.submit;
+        document.getElementById('footer-terms').innerText = t.terms;
+        document.getElementById('footer-privacy').innerText = t.priv;
+        renderCats();
     }
 
-    setInterval(() => {
-        const clk = document.getElementById('clock');
-        if(clk) clk.innerText = new Date().toLocaleString();
-    }, 1000);
-
+    setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleString(); }, 1000);
     window.onload = () => { updateLang('en'); };
 </script>
 </body>
