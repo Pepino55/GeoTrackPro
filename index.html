@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoTrackPro | Vanguard Enterprise v21.5</title>
+    <title>GeoTrackPro | Vanguard Enterprise v21.6</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #e8ddc7; --accent: #3E63DD; --navy: #0a0f1d; --whatsapp: #25D366; --header-h: 75px; }
@@ -118,14 +118,14 @@
             </div>
             <div id="form-status" style="display:none; text-align:center; padding:40px 0;">
                 <span style="font-size:3rem;">✅</span>
-                <h3 style="color:var(--accent);">Message Sent</h3>
-                <p>A Vanguard specialist will review your request and contact you shortly.</p>
-                <button type="button" onclick="resetForm()" class="btn-v" style="background:#64748b;">Send Another</button>
+                <h3 id="st-title" style="color:var(--accent);">Message Sent</h3>
+                <p id="st-p">A Vanguard specialist will review your request and contact you shortly.</p>
+                <button type="button" id="st-btn" onclick="resetForm()" class="btn-v" style="background:#64748b;">Send Another</button>
             </div>
         </form>
-        <div style="border-radius:20px; overflow:hidden; background:#eee;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.83543450937!2d144.95373531532136!3d-37.816279742021234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1614131582234!5m2!1sen!2sus" 
-            width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div style="border-radius:20px; overflow:hidden; background:#eee; position:relative; min-height: 300px;">
+             <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.835434509374!2d144.95373531531615!3d-37.81720997975171!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sau!4v1614123456789!5m2!1sen!2sau" 
+             width="100%" height="100%" style="border:0; position:absolute; top:0; left:0;" allowfullscreen="" loading="lazy"></iframe>
         </div>
     </div>
 </div>
@@ -179,7 +179,8 @@
             abMT: "Our Mission", abMP: "To provide an unblinking eye over your most valuable assets, bridging the gap between physical logistics and digital oversight.",
             abGT: "Global Reach", abGP: "Hardware engineered for international connectivity, backed by a support network that understands local enterprise needs.",
             abST: "Adaptive Security", abSP: "Custom-tailored configurations developed by our technical team to meet the specific demands of your operational landscape.",
-            fName: "Full Name *", cName: "Company *", email: "Email *", phone: "Phone *", help: "Message *", selectC: "Select Country *", submit: "SEND INQUIRY"
+            fName: "Full Name *", cName: "Company *", email: "Email *", phone: "Phone *", help: "Message *", selectC: "Select Country *", submit: "SEND INQUIRY",
+            sTitle: "Message Sent", sMsg: "A Vanguard specialist will review your request and contact you shortly.", sBtn: "Send Another"
         },
         it: { 
             h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "CHI SIAMO",
@@ -189,7 +190,8 @@
             abMT: "Missione", abMP: "Eliminare i punti ciechi con l'innovazione tecnologica e la supervisione digitale.",
             abGT: "Portata Globale", abGP: "Hardware progettato per la connettività internazionale e il supporto locale dedicato.",
             abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura sviluppate dal nostro team tecnico per le vostre esigenze operative.",
-            fName: "Nome Completo *", cName: "Azienda *", email: "Email *", phone: "Telefono *", help: "Messaggio *", selectC: "Seleziona Paese *", submit: "INVIA RICHIESTA"
+            fName: "Nome Completo *", cName: "Azienda *", email: "Email *", phone: "Telefono *", help: "Messaggio *", selectC: "Seleziona Paese *", submit: "INVIA RICHIESTA",
+            sTitle: "Messaggio Inviato", sMsg: "Un esperto Vanguard esaminerà la tua richiesta e ti contatterà al più presto.", sBtn: "Invia un altro"
         },
         es: { 
             h: "VANGUARDIA GLOBAL", p: "PRODUCTOS", ab: "NOSOTROS",
@@ -199,7 +201,8 @@
             abMT: "Nuestra Misión", abMP: "Proporcionar una visión constante de sus activos más valiosos mediante innovación.",
             abGT: "Alcance Global", abGP: "Hardware diseñado para conectividad internacional con soporte local experto.",
             abST: "Seguridad Adaptativa", abSP: "Configuraciones personalizadas desarrolladas para cumplir con las demandas de su flujo de travail.",
-            fName: "Nombre *", cName: "Empresa *", email: "Email *", phone: "Teléfono *", help: "Mensaje *", selectC: "País *", submit: "ENVIAR"
+            fName: "Nombre *", cName: "Empresa *", email: "Email *", phone: "Teléfono *", help: "Mensaje *", selectC: "País *", submit: "ENVIAR",
+            sTitle: "Mensaje Enviado", sMsg: "Un especialista de Vanguard revisará su solicitud y se pondrá en contacto en breve.", sBtn: "Enviar otro"
         },
         fr: { 
             h: "VANGUARD GLOBAL", p: "PRODUITS", ab: "À PROPOS",
@@ -207,9 +210,10 @@
             abT: "LE STANDARD VANGUARD", abS: "Intelligence globale des actifs pour l'entreprise moderne.",
             abP1: "Vanguard Global livre les outils de précision pour sécuriser et optimiser vos actifs.",
             abMT: "Notre Mission", abMP: "Fournir un œil vigilant sur vos actifs les plus précieux grâce à l'innovation.",
-            abGT: "Portée Mondiale", abGP: "Matériel conçu pour la connectivité internationale avec un support local dédié.",
+            abGT: "Portée Mondiale", abGP: "Matériel conçu pour la connettivité internationale avec un support local dédié.",
             abST: "Adaptive Security", abSP: "Configurations sur mesure développées pour répondre aux exigences spécifiques de vos opérations.",
-            fName: "Nom *", cName: "Entreprise *", email: "Email *", phone: "Tel *", help: "Message *", selectC: "Pays *", submit: "ENVOYER"
+            fName: "Nom *", cName: "Entreprise *", email: "Email *", phone: "Tel *", help: "Message *", selectC: "Pays *", submit: "ENVOYER",
+            sTitle: "Message Envoyé", sMsg: "Un spécialiste Vanguard examinera votre demande et vous contactera sous peu.", sBtn: "Envoyer un autre"
         }
     };
 
@@ -270,8 +274,8 @@
         const t = TXT[l] || TXT.en;
         
         // Header & Home
-        document.getElementById('h-title').innerText = t.h;
-        document.getElementById('nav-prod').innerText = t.p;
+        if(document.getElementById('h-title')) document.getElementById('h-title').innerText = t.h;
+        if(document.getElementById('nav-prod')) document.getElementById('nav-prod').innerText = t.p;
         
         // About Us
         if(document.getElementById('ab-title')) document.getElementById('ab-title').innerText = t.abT;
@@ -294,10 +298,15 @@
         const submitBtn = document.getElementById('btn-submit');
         if(submitBtn) submitBtn.innerText = t.submit;
 
+        // Success Screen Elements
+        if(document.getElementById('st-title')) document.getElementById('st-title').innerText = t.sTitle;
+        if(document.getElementById('st-p')) document.getElementById('st-p').innerText = t.sMsg;
+        if(document.getElementById('st-btn')) document.getElementById('st-btn').innerText = t.sBtn;
+
         renderCats();
     }
 
-    // AJAX Submission Logic (The Fix)
+    // AJAX Submission Logic
     const contactForm = document.getElementById("contactForm");
     if (contactForm) {
         contactForm.addEventListener("submit", async function(event) {
@@ -322,11 +331,15 @@
     }
 
     function resetForm() {
-        contactForm.reset();
+        if(contactForm) contactForm.reset();
         document.getElementById("form-content").style.display = "block";
         document.getElementById("form-status").style.display = "none";
+        // Sync the submit button back to current language
+        const lang = document.getElementById('langSelect').value;
+        document.getElementById('btn-submit').innerText = TXT[lang].submit;
     }
 
+    // Footer Clock
     setInterval(() => {
         const clock = document.getElementById('clock');
         if(clock) clock.innerText = new Date().toLocaleString();
