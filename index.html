@@ -100,29 +100,42 @@
             <input type="tel" name="phone" id="in-tel" required>
             <select name="country" id="in-country" required>
                 <option value="" id="opt-country">Select Country *</option>
-                <option value="US">United States</option><option value="IT">Italy</option><option value="ES">Spain</option><option value="FR">France</option><option value="GLOBAL">Other</option>
+                <option value="US">United States</option>
+                <option value="IT">Italy</option>
+                <option value="ES">Spain</option>
+                <option value="FR">France</option>
+                <option value="GLOBAL">Other</option>
             </select>
             <input type="hidden" name="_subject" id="email-subject">
             <textarea name="message" id="in-msg" rows="4" required></textarea>
             <button type="submit" id="btn-submit" class="btn-v" style="width:100%; height:45px;">SEND OFFICIAL INQUIRY</button>
         </form>
-        <div style="border-radius:20px; overflow:hidden; background:#eee; min-height: 400px;">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d1!2d0!3d0!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        <div style="border-radius:20px; overflow:hidden; background:#eee; min-height: 400px; border: 1px solid #e2e8f0;">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.0192843585094!2d-122.3999!3d37.7879!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDQ3JzE2LjQiTiAxMjLCsDIzJzU5LjYiVw!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy">
+            </iframe>
         </div>
     </div>
 </div>
 
-<footer>
-    <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led-dot"></span></div>
-    <div style="display:flex; gap:20px;">
-       <a href="DOCS/LEGAL/terms-of-service.pdf" target="_blank" id="footer-terms" style="color:white; text-decoration:none;">TERMS</a>
-       <a href="DOCS/LEGAL/privacy-policy.pdf" target="_blank" id="footer-privacy" style="color:white; text-decoration:none;">PRIVACY</a>
-    </div>
-</footer>
-
 <script>
+    // Critical Fix: Defined nav globally before any other calls to prevent Uncaught ReferenceError
+    window.nav = function(id) {
+        const views = document.querySelectorAll('.view');
+        views.forEach(v => v.classList.remove('active'));
+        const target = document.getElementById(id);
+        if (target) {
+            target.classList.add('active');
+            if(id === 'prod-menu') renderCats();
+            window.scrollTo(0,0);
+        } else {
+            console.error("Navigation Target Missing: " + id);
+        }
+    };
+
     const WAREHOUSE = [
-        { id: "VL103", cat: ["vehicle"], name: "VL103", desc: "Hardwired vehicle tracker.", features:[{icon:"📡",label:"4G"},{icon:"⚡",label:"Power"}] },
+        { id: "VL103", cat: ["vehicle"], name: "VL103", desc: "Hardwired vehicle tracker.", features:[{icon:"📡",label:"4G"}] },
         { id: "VL106", cat: ["vehicle"], name: "VL106", desc: "LTE vehicle tracker.", features:[{icon:"🛰️",label:"GNSS"}] },
         { id: "VL111", cat: ["vehicle", "motorcycle"], name: "VL111", desc: "High-IO LTE terminal.", features:[{icon:"📡",label:"4G"}] },
         { id: "VL113", cat: ["vehicle", "motorcycle"], name: "VL113", desc: "Smart waterproof tracker.", features:[{icon:"🛡️",label:"IP66"}] },
@@ -153,36 +166,11 @@
     ];
 
     const TXT = {
-        en: { 
-            h: "VANGUARD GLOBAL", p: "PRODUCTS", ab: "About Us", home: "Home", contact: "Contact", demo: "Demo Request", plat: "PLATFORM", 
-            hCat: "Explore Catalog", hSales: "Sales Consultation", back: "← Back to Categories",
-            v: "Vehicle", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", t: "Tags", 
-            abT: "THE VANGUARD STANDARD", abS: "Global Asset Intelligence for the Modern Enterprise.", 
-            abMT: "Our Mission", abMP: "Bridging physical logistics and digital oversight.", 
-            abGT: "Global Reach", abGP: "Engineered for international connectivity.", 
-            abST: "Adaptive Security", abSP: "Custom configurations for specific demands.", 
-            fName: "Full Name *", fComp: "Company *", fEmail: "Email *", fPhone: "Phone *", fSel: "Select Country *", fMsg: "How can we help? *", submit: "SEND INQUIRY", 
-            terms: "TERMS", priv: "PRIVACY"
-        },
-        it: { 
-            h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "Chi Siamo", home: "Home", contact: "Contatti", demo: "Richiedi Demo", plat: "PIATTAFORMA",
-            hCat: "Esplora Catalogo", hSales: "Consulenza Vendite", back: "← Torna alle Categorie",
-            v: "Veicoli", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", t: "Tags", 
-            abT: "LO STANDARD VANGUARD", abS: "Intelligenza asset globale per l'impresa moderna.", 
-            abMT: "Missione", abMP: "Colmare il divario tra logistica e supervisione digitale.", 
-            abGT: "Portata Globale", abGP: "Progettato per la connettività internazionale.", 
-            abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura per ogni esigenza.", 
-            fName: "Nome Completo *", fComp: "Azienda *", fEmail: "Email *", fPhone: "Telefono *", fSel: "Seleziona Paese *", fMsg: "Come possiamo aiutare? *", submit: "INVIA RICHIESTA",
-            terms: "TERMINI", priv: "PRIVACY"
-        }
+        en: { h: "VANGUARD GLOBAL", p: "PRODUCTS", ab: "About Us", home: "Home", contact: "Contact", demo: "Demo Request", plat: "PLATFORM", hCat: "Explore Catalog", hSales: "Sales Consultation", back: "← Back to Categories", v: "Vehicle", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", t: "Tags", abT: "THE VANGUARD STANDARD", abS: "Global Asset Intelligence for the Modern Enterprise.", abMT: "Our Mission", abMP: "Bridging physical logistics and digital oversight.", abGT: "Global Reach", abGP: "Engineered for international connectivity.", abST: "Adaptive Security", abSP: "Custom configurations for specific demands.", fName: "Full Name *", fComp: "Company *", fEmail: "Email *", fPhone: "Phone *", fSel: "Select Country *", fMsg: "How can we help? *", submit: "SEND INQUIRY", terms: "TERMS", priv: "PRIVACY" },
+        it: { h: "VANGUARD GLOBALE", p: "PRODOTTI", ab: "Chi Siamo", home: "Home", contact: "Contatti", demo: "Richiedi Demo", plat: "PIATTAFORMA", hCat: "Esplora Catalogo", hSales: "Consulenza Vendite", back: "← Torna alle Categorie", v: "Veicoli", a: "Asset", dc: "Dashcam", o: "OBD", s: "Personale", ac: "Acc.", t: "Tags", abT: "LO STANDARD VANGUARD", abS: "Intelligenza asset globale per l'impresa moderna.", abMT: "Missione", abMP: "Colmare il divario tra logistica e supervisione digitale.", abGT: "Portata Globale", abGP: "Progettato per la connettività internazionale.", abST: "Sicurezza Adattiva", abSP: "Configurazioni su misura per ogni esigenza.", fName: "Nome Completo *", fComp: "Azienda *", fEmail: "Email *", fPhone: "Telefono *", fSel: "Seleziona Paese *", fMsg: "Come possiamo aiutare? *", submit: "INVIA RICHIESTA", terms: "TERMINI", priv: "PRIVACY" },
+        es: { h: "VANGUARD GLOBAL", p: "PRODUCTOS", ab: "Nosotros", home: "Inicio", contact: "Contacto", demo: "Solicitar Demo", plat: "PLATAFORMA", hCat: "Explorar Catálogo", hSales: "Consulta de Ventas", back: "← Volver a Categorías", v: "Vehículos", a: "Activos", dc: "Dashcam", o: "OBD", s: "Personal", ac: "Acc.", t: "Tags", abT: "EL ESTÁNDAR VANGUARD", abS: "Inteligencia de activos global para la empresa moderna.", abMT: "Misión", abMP: "Cerrando la brecha entre la logística física y la supervisión digital.", abGT: "Alcance Global", abGP: "Hardware diseñado para conectividad internacional.", abST: "Seguridad Adaptativa", abSP: "Configuraciones personalizadas para demandas específicas.", fName: "Nombre Completo *", fComp: "Empresa *", fEmail: "Correo *", fPhone: "Teléfono *", fSel: "Seleccionar País *", fMsg: "¿Cómo podemos ayudar? *", submit: "ENVIAR SOLICITUD", terms: "TÉRMINOS", priv: "PRIVACIDAD" },
+        fr: { h: "VANGUARD GLOBAL", p: "PRODUITS", ab: "À Propos", home: "Accueil", contact: "Contact", demo: "Démo", plat: "PLATEFORME", hCat: "Explorer le Catalogue", hSales: "Consultation Ventes", back: "← Retour aux Catégories", v: "Véhicules", a: "Actifs", dc: "Dashcam", o: "OBD", s: "Personnel", ac: "Acc.", t: "Tags", abT: "LE STANDARD VANGUARD", abS: "Intelligence globale des actifs pour l'entreprise moderne.", abMT: "Notre Mission", abMP: "Combler le fossé entre logistique physique et surveillance numérique.", abGT: "Portée Mondiale", abGP: "Matériel conçu pour une connectivité internationale.", abST: "Sécurité Adaptative", abSP: "Configurations sur mesure pour des besoins spécifiques.", fName: "Nom Complet *", fComp: "Entreprise *", fEmail: "Email *", fPhone: "Téléphone *", fSel: "Sélectionner Pays *", fMsg: "Comment pouvons-nous vous aider ? *", submit: "ENVOYER LA DEMANDE", terms: "CONDITIONS", priv: "CONFIDENTIALITÉ" }
     };
-
-    function nav(id) {
-        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        if(id === 'prod-menu') renderCats();
-        window.scrollTo(0,0);
-    }
 
     function renderCats() {
         const lang = document.getElementById('langSelect').value;
@@ -198,7 +186,7 @@
     }
 
     function renderList(cat) {
-        nav('list-view');
+        window.nav('list-view');
         const items = WAREHOUSE.filter(d => d.cat.includes(cat));
         document.getElementById('gridAnchor').innerHTML = items.map(d => `
             <div class="card">
@@ -216,7 +204,7 @@
     function openForm(t) {
         document.getElementById('f-title').innerText = t;
         document.getElementById('email-subject').value = "Inquiry: " + t;
-        nav('contact');
+        window.nav('contact');
     }
 
     function updateLang(l) {
@@ -233,9 +221,9 @@
         document.getElementById('btn-back-cat').innerText = t.back;
         document.getElementById('ab-title').innerText = t.abT;
         document.getElementById('ab-subtitle').innerText = t.abS;
-        document.getElementById('ab-m-title').innerText = t.abMT; document.getElementById('ab-m-p').innerText = t.abMP;
-        document.getElementById('ab-g-title').innerText = t.abGT; document.getElementById('ab-g-p').innerText = t.abGP;
-        document.getElementById('ab-s-title').innerText = t.abST; document.getElementById('ab-s-p').innerText = t.abSP;
+        document.getElementById('ab-m-p').innerText = t.abMP;
+        document.getElementById('ab-g-p').innerText = t.abGP;
+        document.getElementById('ab-s-p').innerText = t.abSP;
         document.getElementById('in-name').placeholder = t.fName;
         document.getElementById('in-comp').placeholder = t.fComp;
         document.getElementById('in-email').placeholder = t.fEmail;
@@ -248,8 +236,13 @@
         renderCats();
     }
 
-    setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleString(); }, 1000);
+    setInterval(() => { 
+        const clk = document.getElementById('clock');
+        if(clk) clk.innerText = new Date().toLocaleString(); 
+    }, 1000);
+    
     window.onload = () => { updateLang('en'); };
 </script>
 </body>
 </html>
+
