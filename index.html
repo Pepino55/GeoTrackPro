@@ -180,7 +180,7 @@
             abGT: "Global Reach", abGP: "Hardware engineered for international connectivity, backed by a support network that understands local enterprise needs.",
             abST: "Adaptive Security", abSP: "Custom-tailored configurations developed by our technical team to meet the specific demands of your operational landscape.",
             fName: "Full Name *", cName: "Company *", email: "Email *", phone: "Phone *", help: "Message *", selectC: "Select Country *", submit: "SEND INQUIRY"
-           sTitle: "Message Sent", sMsg: "A Vanguard specialist will review your request and contact you shortly.", sBtn: "Send Another"
+            sTitle: "Message Sent", sMsg: "A Vanguard specialist will review your request and contact you shortly.", sBtn: "Send Another"
         },
     
         it: { 
@@ -298,6 +298,12 @@
         if(countrySelect && countrySelect.options[0]) countrySelect.options[0].text = t.selectC;
         const submitBtn = document.getElementById('btn-submit');
         if(submitBtn) submitBtn.innerText = t.submit;
+        const statusDiv = document.getElementById('form-status');
+        if (statusDiv) {
+            statusDiv.querySelector('h3').innerText = t.sTitle;
+            statusDiv.querySelector('p').innerText = t.sMsg;
+            statusDiv.querySelector('button').innerText = t.sBtn;
+        }
 
         renderCats();
     }
@@ -308,6 +314,12 @@
         contactForm.addEventListener("submit", async function(event) {
             event.preventDefault();
             const data = new FormData(event.target);
+            
+            // Show "Sending..." state on the button to look responsive
+            const btn = document.getElementById('btn-submit');
+            const originalBtnText = btn.innerText;
+            btn.innerText = "...";
+
             try {
                 const response = await fetch(event.target.action, {
                     method: contactForm.method,
@@ -318,20 +330,26 @@
                     document.getElementById("form-content").style.display = "none";
                     document.getElementById("form-status").style.display = "block";
                 } else {
-                    alert("Submission error. Please try again.");
+                    alert("Error.");
+                    btn.innerText = originalBtnText;
                 }
             } catch (error) {
                 alert("Network error.");
+                btn.innerText = originalBtnText;
             }
         });
     }
 
     function resetForm() {
+        const contactForm = document.getElementById("contactForm");
         contactForm.reset();
         document.getElementById("form-content").style.display = "block";
         document.getElementById("form-status").style.display = "none";
+        
+        // Ensure the submit button text is restored after a reset
+        const lang = document.getElementById('langSelect').value;
+        document.getElementById('btn-submit').innerText = TXT[lang].submit;
     }
-
     setInterval(() => {
         const clock = document.getElementById('clock');
         if(clock) clock.innerText = new Date().toLocaleString();
@@ -341,4 +359,5 @@
 </script>
 </body>
 </html>
+
 
