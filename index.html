@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VANGUARD GLOBAL | Enterprise Tracking</title>
+    <title>GeoTrackPro | Vanguard Global</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root { --gold: #e8ddc7; --accent: #3E63DD; --navy: #0a0f1d; --header-h: 80px; }
@@ -12,171 +12,162 @@
         body { background: #f8fafc; color: var(--navy); min-height: 100vh; display: flex; flex-direction: column; }
         
         header { background: var(--gold); height: var(--header-h); position: sticky; top: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        
-        .btn-v { background: var(--accent); color: white; padding: 10px 18px; border-radius: 50px; font-weight: 800; font-size: 0.65rem; border: none; cursor: pointer; text-transform: uppercase; transition: 0.2s; text-decoration: none; display: inline-flex; align-items: center; }
-        .btn-v:hover { transform: translateY(-1px); filter: brightness(1.1); }
+        .logo { height: 35px; cursor: pointer; }
+
+        .nav-group { display: flex; gap: 10px; align-items: center; }
+        .btn-v { background: var(--accent); color: white!important; padding: 12px 20px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; border: none; cursor: pointer; text-transform: uppercase; text-decoration: none; transition: 0.2s; }
+        .btn-v:hover { transform: translateY(-2px); filter: brightness(1.1); }
+        .btn-dark { background: #1e293b; }
+        .btn-gray { background: #475569; }
 
         main { flex: 1; position: relative; }
-        .view { display: none; padding: 40px 5%; animation: fadeIn 0.3s ease; }
+        .view { display: none; padding: 60px 5%; }
         .view.active { display: block; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* Hero Styling */
+        .hero { height: 70vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; background: linear-gradient(rgba(10,15,29,0.7), rgba(10,15,29,0.7)), url('IMAGES/ui/hero-bg.jpg') center/cover; color: white; margin: -60px -5.3% 0 -5.3%; }
 
         /* Catalog Layout */
-        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; }
-        .cat-card { background: white; padding: 30px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; cursor: pointer; }
-        .cat-card:hover { border-color: var(--accent); }
-        
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 20px; }
-        .card { background: white; border-radius: 20px; border: 1px solid #e2e8f0; padding: 20px; display: flex; gap: 15px; height: 250px; }
-        .card img { width: 100px; object-fit: contain; background: #f8fafc; border-radius: 10px; }
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; max-width: 1200px; margin: 0 auto; }
+        .cat-card { background: white; padding: 40px 20px; border-radius: 24px; text-align: center; border: 1px solid #e2e8f0; cursor: pointer; transition: 0.3s; }
+        .cat-card:hover { border-color: var(--accent); transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .cat-card span { font-size: 2.5rem; display: block; margin-bottom: 15px; }
 
-        footer { background: var(--navy); color: white; padding: 20px 4%; display: flex; align-items: center; justify-content: space-between; font-size: 0.7rem; }
-        .led-dot { height: 8px; width: 8px; background: #00FF00; border-radius: 50%; display: inline-block; margin-left: 5px; box-shadow: 0 0 8px #00FF00; }
+        /* Product Grid */
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); gap: 25px; }
+        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 25px; display: flex; gap: 20px; align-items: center; min-height: 280px; }
+        .card-img { flex: 0 0 140px; height: 140px; background: #fcfcfc; border-radius: 15px; display: flex; align-items: center; justify-content: center; }
+        .card-img img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+        /* Footer */
+        footer { background: var(--navy); color: white; padding: 25px 4%; display: flex; align-items: center; justify-content: space-between; font-size: 0.8rem; position: sticky; bottom: 0; }
+        .led { height: 10px; width: 10px; background: #00FF00; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #00FF00; }
+
+        /* Forms */
+        .form-container { max-width: 1100px; margin: 0 auto; background: white; border-radius: 30px; padding: 40px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; border: 1px solid #e2e8f0; }
+        input, textarea, select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #cbd5e1; margin-bottom: 15px; font-size: 0.95rem; }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="display:flex; gap:15px; align-items:center;">
-        <img src="IMAGES/ui/logo.png" height="30" onclick="showView('home')" style="cursor:pointer">
-        <button onclick="showView('about')" class="btn-v" style="background:#475569;">About</button>
-        <button onclick="showView('home')" class="btn-v" style="background:#1e293b;">Home</button>
+    <div class="nav-group">
+        <img src="IMAGES/ui/logo.png" class="logo" onclick="nav('home')">
+        <button onclick="nav('about')" class="btn-v btn-gray">About Us</button>
+        <button onclick="nav('home')" class="btn-v btn-dark">Home</button>
     </div>
-    <div style="display:flex; gap:10px;">
-        <button onclick="showView('catalog')" class="btn-v">PRODUCTS</button>
-        <button onclick="showView('contact')" class="btn-v" style="background:#6366f1;">Contact</button>
-        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" style="background:#059669;">PLATFORM</button>
+    <div class="nav-group">
+        <button onclick="nav('catalog')" class="btn-v">Catalog</button>
+        <button onclick="nav('contact')" class="btn-v" style="background:#6366f1;">Contact</button>
+        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" style="background:#059669;">Platform</button>
     </div>
 </header>
 
 <main>
     <section id="home" class="view active">
-        <div style="height: 60vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;">
-            <h1 style="font-size: 3.5rem; font-weight: 800; letter-spacing: -1px;">VANGUARD GLOBAL</h1>
-            <p style="margin: 20px 0 30px 0; font-size: 1.2rem; color: #64748b;">Enterprise Asset Intelligence Solutions</p>
-            <button onclick="showView('catalog')" class="btn-v" style="padding: 15px 40px;">Explore Catalog</button>
+        <div class="hero">
+            <h1 style="font-size: 4rem; font-weight: 800; margin-bottom: 10px;">VANGUARD GLOBAL</h1>
+            <p style="font-size: 1.4rem; opacity: 0.9; margin-bottom: 30px;">Enterprise Asset Intelligence Solutions</p>
+            <button onclick="nav('catalog')" class="btn-v" style="padding: 18px 50px; font-size: 0.9rem;">Explore Full Catalog</button>
         </div>
     </section>
 
     <section id="about" class="view">
-        <h2 style="font-size: 2.5rem; margin-bottom: 20px;">The Vanguard Standard</h2>
-        <p style="max-width: 800px; line-height: 1.6; font-size: 1.1rem;">
-            Vanguard Global is dedicated to bridging the gap between physical logistics and digital oversight. 
-            Our solutions are engineered for international connectivity and adaptive security.
-        </p>
+        <div style="max-width: 900px; margin: 0 auto;">
+            <h2 style="font-size: 3rem; margin-bottom: 30px; border-bottom: 5px solid var(--accent); display: inline-block;">The Vanguard Standard</h2>
+            <p style="font-size: 1.2rem; line-height: 1.8; margin-bottom: 40px; font-weight: 600;">Bridging physical logistics and digital oversight.</p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div style="background:white; padding:30px; border-radius:20px; border:1px solid #e2e8f0;">
+                    <h3 style="color:var(--accent); margin-bottom:15px;">Our Mission</h3>
+                    <p>Providing high-tier hardware for complex international logistics requirements.</p>
+                </div>
+                <div style="background:white; padding:30px; border-radius:20px; border:1px solid #e2e8f0;">
+                    <h3 style="color:var(--accent); margin-bottom:15px;">Global Reach</h3>
+                    <p>Engineered for seamless connectivity across international borders and frequencies.</p>
+                </div>
+            </div>
+        </div>
     </section>
 
     <section id="catalog" class="view">
-        <div class="cat-grid" id="category-list">
-            </div>
+        <div class="cat-grid">
+            <div class="cat-card" onclick="render('vehicle')"><span>🚗</span><strong>Vehicle</strong></div>
+            <div class="cat-card" onclick="render('asset')"><span>📦</span><strong>Asset</strong></div>
+            <div class="cat-card" onclick="render('dashcam')"><span>📹</span><strong>Dashcam</strong></div>
+            <div class="cat-card" onclick="render('obd')"><span>🔌</span><strong>OBDII</strong></div>
+            <div class="cat-card" onclick="render('personal')"><span>👤</span><strong>Personal</strong></div>
+            <div class="cat-card" onclick="render('tags')"><span>🏷️</span><strong>Tags</strong></div>
+            <div class="cat-card" onclick="render('acc')"><span>⚙️</span><strong>Accessories</strong></div>
+        </div>
     </section>
 
     <section id="products" class="view">
-        <button onclick="showView('catalog')" class="btn-v" style="background:#64748b; margin-bottom: 20px;">← Back</button>
+        <button onclick="nav('catalog')" class="btn-v btn-gray" style="margin-bottom: 30px;">← Back to Categories</button>
         <div class="product-grid" id="product-list"></div>
     </section>
 
     <section id="contact" class="view">
-        <div style="background:white; padding:40px; border-radius:20px; border:1px solid #e2e8f0;">
-            <h2>Contact Sales</h2>
-            <p style="margin-bottom:20px;">Direct inquiry for enterprise solutions.</p>
+        <div class="form-container">
             <form action="https://formspree.io/f/mwvnvzee" method="POST">
-                <input type="text" name="name" placeholder="Full Name" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #cbd5e1; border-radius:8px;" required>
-                <input type="email" name="email" placeholder="Email" style="width:100%; padding:12px; margin-bottom:10px; border:1px solid #cbd5e1; border-radius:8px;" required>
-                <textarea name="message" placeholder="Project details..." style="width:100%; padding:12px; height:100px; border:1px solid #cbd5e1; border-radius:8px;" required></textarea>
-                <button type="submit" class="btn-v" style="width:100%; height:50px;">Submit Inquiry</button>
+                <h2 style="margin-bottom: 20px;">Contact Sales</h2>
+                <input type="text" name="name" placeholder="Full Name *" required>
+                <input type="text" name="company" placeholder="Company Name *" required>
+                <input type="email" name="email" placeholder="Business Email *" required>
+                <textarea name="message" placeholder="How can we help your business?" rows="5" required></textarea>
+                <button type="submit" class="btn-v" style="width: 100%; padding: 15px;">Send Official Inquiry</button>
             </form>
+            <div style="border-radius: 20px; overflow: hidden; background: #eee;">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.8354345093647!2d144.95373531531615!3d-37.81627977975124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1615456789012!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
         </div>
     </section>
 </main>
 
 <footer>
-    <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led-dot"></span></div>
-    <div style="display:flex; gap:20px;">
-       <a href="DOCS/LEGAL/terms-of-service.pdf" target="_blank" style="color:white; text-decoration:none;">TERMS</a>
-       <a href="DOCS/LEGAL/privacy-policy.pdf" target="_blank" style="color:white; text-decoration:none;">PRIVACY</a>
+    <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led"></span></div>
+    <div style="display:flex; gap:30px;">
+        <a href="DOCS/LEGAL/terms-of-service.pdf" target="_blank" style="color:white; text-decoration:none; font-weight:800;">TERMS</a>
+        <a href="DOCS/LEGAL/privacy-policy.pdf" target="_blank" style="color:white; text-decoration:none; font-weight:800;">PRIVACY</a>
     </div>
 </footer>
 
 <script>
-    const STOCK = [
-        { id: "VL103", cat: "vehicle", name: "VL103", desc: "Hardwired 4G vehicle tracker." },
-        { id: "LL701", cat: "asset", name: "LL701", desc: "Ultra-long standby asset GPS." },
-        { id: "JC400", cat: "dashcam", name: "JC400", desc: "AI-powered 4G dashcam." },
-        { id: "LL708", cat: "tags", name: "LL708", desc: "Bluetooth Asset Tag." },
-        { id: "VL505", cat: "obd", name: "VL505", desc: "Plug & Play OBDII Tracker." },
-        { id: "CE02", cat: "acc", name: "CE02", desc: "External Camera Accessory." }
+    const DATA = [
+        { id: "VL103", cat: "vehicle", name: "VL103", desc: "Hardwired 4G Vehicle Tracker" },
+        { id: "LL701", cat: "asset", name: "LL701", desc: "Long Standby Wireless Asset Tracker" },
+        { id: "JC400", cat: "dashcam", name: "JC400", desc: "4G ADAS Pro Dashcam" },
+        { id: "LL708", cat: "tags", name: "LL708", desc: "Bluetooth Asset Tag" },
+        { id: "VL505", cat: "obd", name: "VL505", desc: "Plug & Play OBDII Terminal" },
+        { id: "CE02", cat: "acc", name: "CE02", desc: "External Camera Accessory" },
+        { id: "PL601", cat: "personal", name: "PL601", desc: "Advanced Personal GPS" }
     ];
 
-    // Core Nav System
-    function showView(viewId) {
-        console.log("Navigating to:", viewId);
-        const views = document.querySelectorAll('.view');
-        views.forEach(v => v.classList.remove('active'));
-        
-        const target = document.getElementById(viewId);
-        if(target) {
-            target.classList.add('active');
-            window.scrollTo(0,0);
-        } else {
-            console.error("View not found:", viewId);
-        }
+    function nav(id) {
+        document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
     }
 
-    // Render Categories
-    function initCatalog() {
-        const catList = document.getElementById('category-list');
-        const categories = [
-            { id: 'vehicle', n: 'Vehicle', i: '🚗' },
-            { id: 'asset', n: 'Asset', i: '📦' },
-            { id: 'dashcam', n: 'Dashcam', i: '📹' },
-            { id: 'obd', n: 'OBD', i: '🔌' },
-            { id: 'tags', n: 'Tags', i: '🏷️' },
-            { id: 'acc', n: 'Accessories', i: '⚙️' }
-        ];
-
-        catList.innerHTML = categories.map(c => `
-            <div class="cat-card" onclick="renderProducts('${c.id}')">
-                <span style="font-size:2rem; display:block;">${c.i}</span>
-                <strong style="font-size:0.9rem;">${c.n}</strong>
-            </div>
-        `).join('');
-    }
-
-    // Render Products
-    function renderProducts(catId) {
-        showView('products');
+    function render(cat) {
+        nav('products');
         const list = document.getElementById('product-list');
-        const filtered = STOCK.filter(s => s.cat === catId);
-        
-        list.innerHTML = filtered.map(p => `
+        const items = DATA.filter(d => d.cat === cat);
+        list.innerHTML = items.map(i => `
             <div class="card">
-                <img src="IMAGES/${p.cat}/${p.id.toLowerCase()}.png" onerror="this.src='IMAGES/ui/coming-soon.png'">
-                <div style="display:flex; flex-direction:column; justify-content:space-between; flex:1;">
-                    <div>
-                        <h3 style="margin:0">${p.name}</h3>
-                        <p style="font-size:0.75rem; color:#64748b; margin:5px 0;">${p.desc}</p>
-                    </div>
-                    <div style="display:flex; gap:10px;">
-                        <button class="btn-v" style="flex:1; background:#64748b;">Specs</button>
-                        <button onclick="showView('contact')" class="btn-v" style="flex:1;">Inquiry</button>
+                <div class="card-img"><img src="IMAGES/${i.cat}/${i.id.toLowerCase()}.png" onerror="this.src='IMAGES/ui/coming-soon.png'"></div>
+                <div style="flex:1;">
+                    <h3 style="font-size:1.4rem;">${i.name}</h3>
+                    <p style="color:#64748b; margin:10px 0;">${i.desc}</p>
+                    <div style="display:flex; gap:10px; margin-top:20px;">
+                        <a href="DOCS/SPECS/${i.id.toLowerCase()}.pdf" target="_blank" class="btn-v btn-gray" style="flex:1; text-align:center;">Specs</a>
+                        <button onclick="nav('contact')" class="btn-v" style="flex:1;">Inquiry</button>
                     </div>
                 </div>
             </div>
         `).join('');
     }
 
-    // Clock
-    setInterval(() => {
-        const clk = document.getElementById('clock');
-        if(clk) clk.innerText = new Date().toLocaleString();
-    }, 1000);
-
-    // Initial Load
-    window.addEventListener('DOMContentLoaded', () => {
-        initCatalog();
-        console.log("Vanguard System Online");
-    });
+    setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleString(); }, 1000);
 </script>
 
 </body>
