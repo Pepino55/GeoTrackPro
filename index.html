@@ -271,25 +271,13 @@
         document.getElementById('h-title').innerText = t.h;
         document.getElementById('nav-prod').innerText = t.p;
         const abT = document.getElementById('ab-title');
-        if(abT) 
+        if(abT) {
             abT.innerText = t.abT;
             document.getElementById('ab-subtitle').innerText = t.abS;
             document.getElementById('ab-p1').innerText = t.abP1;
             document.getElementById('ab-m-p').innerText = t.abMP;
             document.getElementById('ab-g-p').innerText = t.abGP;
             document.getElementById('ab-s-p').innerText = t.abSP;
-	if(document.getElementById('in-name')) document.getElementById('in-name').placeholder = t.fName;
-	if(document.getElementById('in-comp')) document.getElementById('in-comp').placeholder = t.cName;
-	if(document.getElementById('in-email')) document.getElementById('in-email').placeholder = t.email;
-	if(document.getElementById('in-tel')) document.getElementById('in-tel').placeholder = t.phone;
-	if(document.getElementById('in-msg')) document.getElementById('in-msg').placeholder = t.help;
-{
-// For the Dropdown and the Button
-const countrySelect = document.getElementById('in-country');
-if(countrySelect && countrySelect.options[0]) countrySelect.options[0].text = t.selectC;
-
-const submitBtn = document.getElementById('btn-submit');
-if(submitBtn) submitBtn.innerText = t.submit;
         }
         renderCats();
         document.getElementById('in-name').placeholder = t.fName;
