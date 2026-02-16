@@ -3,124 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GeoTrackPro | Vanguard Enterprise v21.7</title>
+    <title>GeoTrackPro | Vanguard Enterprise v22.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --gold: #e8ddc7; --accent: #3E63DD; --navy: #0a0f1d; --header-h: 75px; }
-        * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { margin: 0; background: #f8fafc; color: var(--navy); padding-bottom: 60px; min-height: 100vh; position: relative; }
-        header { background: var(--gold); height: var(--header-h); position: fixed; top: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
-        .btn-v { background: var(--accent); color: white!important; padding: 10px 18px; border-radius: 50px; font-weight: 800; font-size: 0.65rem; border: none; cursor: pointer; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
-        .view { display: none; padding: calc(var(--header-h) + 20px) 5% 100px 5%; }
-        .view.active { display: block; }
-        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 50px; }
-        .cat-card { background: white; padding: 25px; border-radius: 20px; text-align: center; border: 1px solid #e2e8f0; cursor: pointer; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(400px, 450px)); gap: 25px; margin-top: 30px; justify-content: center; }
-        .card { background: white; border-radius: 24px; border: 1px solid #e2e8f0; padding: 25px; display: flex; gap: 20px; height: 320px; }
-        .contact-stack { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; background: white; padding: 40px; border-radius: 30px; border: 1px solid #e2e8f0; }
-        input, textarea, select { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #cbd5e1; margin-bottom: 10px; font-size: 0.9rem; }
-        footer { background: var(--navy); color: white; height: 50px; position: fixed; bottom: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; font-size: 0.65rem; z-index: 10000; }
-        .led-dot { height: 8px; width: 8px; background: #00FF00; border-radius: 50%; display: inline-block; margin-left: 5px; }
+        :root { --gold: #e8ddc7; --accent: #3E63DD; --navy: #0a0f1d; --header-h: 80px; }
+        * { box-sizing: border-box; font-family: 'Plus Jakarta Sans', sans-serif; transition: all 0.2s ease; }
+        
+        body { margin: 0; background: #fdfdfd; color: var(--navy); display: flex; flex-direction: column; min-height: 100vh; overflow-x: hidden; }
+        
+        header { background: var(--gold); height: var(--header-h); position: fixed; top: 0; width: 100%; display: flex; align-items: center; justify-content: space-between; padding: 0 4%; z-index: 10000; box-shadow: 0 2px 15px rgba(0,0,0,0.08); }
+        
+        .logo { height: 35px; cursor: pointer; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1)); }
+        
+        .nav-group { display: flex; gap: 10px; align-items: center; }
+        
+        .btn-v { background: var(--accent); color: white!important; padding: 12px 20px; border-radius: 50px; font-weight: 800; font-size: 0.7rem; border: none; cursor: pointer; text-transform: uppercase; text-decoration: none; display: flex; align-items: center; justify-content: center; letter-spacing: 0.5px; }
+        .btn-v:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(62, 99, 221, 0.3); }
+        .btn-secondary { background: #475569; }
+        .btn-dark { background: #1e293b; }
+        .btn-green { background: #059669; }
+
+        .view { display: none; padding: calc(var(--header-h) + 40px) 5% 100px 5%; flex: 1; width: 100%; max-width: 1400px; margin: 0 auto; }
+        .view.active { display: block; animation: fadeIn 0.4s ease; }
+
+        .hero { text-align: center; padding-top: 10vh; }
+        .hero h1 { font-size: 4rem; font-weight: 800; margin: 0; letter-spacing: -1px; }
+
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 40px; }
+        .cat-card { background: white; padding: 40px 20px; border-radius: 25px; text-align: center; border: 1px solid #edf2f7; cursor: pointer; box-shadow: 0 4px 6px rgba(0,0,0,0.02); }
+        .cat-card:hover { border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .cat-card span { font-size: 2.5rem; display: block; margin-bottom: 15px; }
+
+        .contact-container { display: grid; grid-template-columns: 1.2fr 1fr; gap: 40px; background: white; padding: 50px; border-radius: 35px; border: 1px solid #edf2f7; box-shadow: 0 20px 40px rgba(0,0,0,0.03); }
+        input, textarea, select { width: 100%; padding: 15px; border-radius: 12px; border: 1px solid #e2e8f0; margin-bottom: 15px; background: #f8fafc; font-size: 0.95rem; }
+        input:focus { outline: 2px solid var(--accent); background: white; }
+
+        footer { background: var(--navy); color: rgba(255,255,255,0.7); padding: 20px 4%; display: flex; align-items: center; justify-content: space-between; font-size: 0.7rem; font-weight: 600; width: 100%; margin-top: auto; }
+        .led { height: 8px; width: 8px; background: #00FF00; border-radius: 50%; display: inline-block; margin-left: 8px; box-shadow: 0 0 10px #00FF00; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
 <header>
-    <div style="display:flex; align-items:center; gap:15px;">
-        <img src="IMAGES/ui/logo.png" height="30" onclick="nav('home')" style="cursor:pointer">
-        <button onclick="nav('home')" class="btn-v" style="background:#1e293b;">Home</button>
+    <div class="nav-group">
+        <img src="IMAGES/ui/logo.png" class="logo" onclick="nav('home')">
+        <button onclick="nav('about')" class="btn-v btn-secondary" id="nav-about">ABOUT US</button>
+        <button onclick="nav('home')" class="btn-v btn-dark" id="nav-home">HOME</button>
     </div>
-    <div style="display:flex; gap:8px;">
-        <button onclick="nav('prod-menu')" class="btn-v" id="nav-prod">PRODUCTS</button>
-        <button onclick="openForm('CONTACT')" class="btn-v">Contact</button>
-        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v" style="background:#059669;">PLATFORM</button>
+    
+    <div class="nav-group">
+        <button onclick="nav('catalog')" class="btn-v" id="nav-catalog">CATALOG</button>
+        <button onclick="openForm('CONTACT')" class="btn-v" id="nav-contact">CONTACT</button>
+        <button onclick="window.open('https://tracksolidpro.com')" class="btn-v btn-green">PLATFORM</button>
+        
+        <select id="langSelect" onchange="updateLang(this.value)" style="width:auto; margin:0; background:rgba(0,0,0,0.05); border:none; border-radius:10px; font-weight:800; padding: 5px 10px;">
+            <option value="en">EN</option>
+            <option value="it">IT</option>
+        </select>
     </div>
-    <select id="langSelect" onchange="updateLang(this.value)" style="width:auto; margin:0; background:var(--accent); color:white; border-radius:20px; font-weight:800;">
-        <option value="en">EN</option><option value="it">IT</option>
-    </select>
 </header>
 
 <div id="home" class="view active">
-    <h1 id="h-title" style="font-size: 3rem; text-align:center; margin-top:100px;">VANGUARD GLOBAL</h1>
-    <p style="text-align:center;">Enterprise Asset Intelligence Solutions</p>
-    <div style="text-align:center; margin-top:30px;">
-        <button onclick="nav('prod-menu')" class="btn-v" style="padding:15px 40px;">Explore Catalog</button>
+    <div class="hero">
+        <h1 id="h-title">VANGUARD GLOBAL</h1>
+        <p id="h-sub" style="font-size: 1.2rem; color: #64748b; margin: 20px 0 40px 0;">Enterprise Asset Intelligence & Global Oversight</p>
+        <button onclick="nav('catalog')" class="btn-v" style="padding: 18px 50px; margin: 0 auto; font-size: 0.9rem;">Explore Catalog</button>
     </div>
 </div>
 
-<div id="prod-menu" class="view">
-    <div class="cat-grid" id="cat-anchor"></div>
+<div id="about" class="view">
+    <h2 id="ab-title" style="font-size: 3rem; margin-bottom: 20px;">The Vanguard Standard</h2>
+    <p id="ab-p" style="font-size: 1.1rem; line-height: 1.8; color: #475569; max-width: 800px;">Vanguard Global is dedicated to bridging the gap between physical logistics and digital oversight. Our solutions are engineered for international connectivity and adaptive security.</p>
 </div>
 
-<div id="list-view" class="view">
-    <button onclick="nav('prod-menu')" class="btn-v" style="background:#64748b; margin-bottom:20px;">← Back</button>
-    <div class="product-grid" id="gridAnchor"></div>
+<div id="catalog" class="view">
+    <div class="cat-grid">
+        <div class="cat-card" onclick="alert('Demo Mode: Vehicles Selected')"><span>🚗</span><b id="c-v">VEHICLES</b></div>
+        <div class="cat-card" onclick="alert('Demo Mode: Assets Selected')"><span>📦</span><b id="c-a">ASSETS</b></div>
+        <div class="cat-card" onclick="alert('Demo Mode: Dashcams Selected')"><span>📹</span><b id="c-d">DASHCAMS</b></div>
+    </div>
 </div>
 
 <div id="contact" class="view">
-    <div class="contact-stack">
-        <form id="contactForm">
-            <h2 id="f-title">CONTACT US</h2>
-            <input type="text" id="in-name" placeholder="Full Name *">
-            <input type="text" id="in-comp" placeholder="Company Name *">
-            <input type="email" id="in-email" placeholder="Business Email *">
-            <input type="tel" id="in-tel" placeholder="Phone Number *">
-            <select id="in-country"><option value="">Select Country *</option><option>Italy</option><option>USA</option></select>
-            <textarea id="in-msg" rows="4" placeholder="How can we help? *"></textarea>
-            <button type="button" id="btn-submit" class="btn-v" style="width:100%;">SEND INQUIRY</button>
+    <div class="contact-container">
+        <form id="v-form">
+            <h2 id="f-head" style="margin: 0 0 30px 0;">CONTACT US</h2>
+            <input type="text" id="in-name" placeholder="Full Name *" required>
+            <input type="text" id="in-comp" placeholder="Company Name *" required>
+            <input type="email" id="in-mail" placeholder="Business Email *" required>
+            <input type="tel" id="in-tel" placeholder="Phone Number *" required>
+            <select id="in-country"><option id="in-opt" value="">Select Country *</option><option>Italy</option><option>International</option></select>
+            <textarea id="in-msg" rows="5" placeholder="How can we help? *"></textarea>
+            <button type="submit" id="btn-submit" class="btn-v" style="width: 100%; height: 55px; font-size: 0.9rem;">SEND OFFICIAL INQUIRY</button>
         </form>
-        <div style="background:#eee; border-radius:20px; display:flex; align-items:center; justify-content:center;">Map Placeholder</div>
+        <div style="background: #f1f5f9; border-radius: 20px; overflow: hidden;">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3151.83543450937!2d144.9537353153221!3d-37.81627973560206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad65d4c2b349649%3A0xb6899234e561db11!2sMelbourne%20VIC%2C%20Australia!5e0!3m2!1sen!2sus!4v1614131234567!5m2!1sen!2sus" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+        </div>
     </div>
 </div>
 
 <footer>
-    <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led-dot"></span></div>
-    <div>TERMS | PRIVACY</div>
+    <div>© 2026 GEOTRACKPRO | <span id="clock"></span> <span class="led"></span></div>
+    <div style="display: flex; gap: 20px;">
+        <span style="cursor:pointer">TERMS</span>
+        <span style="cursor:pointer">PRIVACY</span>
+    </div>
 </footer>
 
 <script>
-    const TXT = {
-        en: { h: "VANGUARD GLOBAL", p: "PRODUCTS", name: "Full Name *", comp: "Company Name *", mail: "Business Email *", tel: "Phone Number *", msg: "How can we help? *", sub: "SEND INQUIRY" },
-        it: { h: "VANGUARD GLOBALE", p: "PRODOTTI", name: "Nome Completo *", comp: "Azienda *", mail: "Email Aziendale *", tel: "Telefono *", msg: "Come possiamo aiutare? *", sub: "INVIA RICHIESTA" }
+    const DICT = {
+        en: {
+            navAb: "ABOUT US", navHm: "HOME", navCat: "CATALOG", navCon: "CONTACT",
+            hT: "VANGUARD GLOBAL", hS: "Enterprise Asset Intelligence Solutions",
+            cV: "VEHICLES", cA: "ASSETS", cD: "DASHCAMS",
+            fH: "CONTACT US", fN: "Full Name *", fC: "Company Name *", fE: "Business Email *", fP: "Phone Number *", fO: "Select Country *", fM: "How can we help? *", fB: "SEND OFFICIAL INQUIRY"
+        },
+        it: {
+            navAb: "CHI SIAMO", navHm: "HOME", navCat: "PRODOTTI", navCon: "CONTATTI",
+            hT: "VANGUARD GLOBALE", hS: "Soluzioni di Intelligence Aziendale per Asset",
+            cV: "VEICOLI", cA: "ASSET", cD: "DASHCAM",
+            fH: "CONTATTACI", fN: "Nome Completo *", fC: "Azienda *", fE: "Email Aziendale *", fP: "Telefono *", fO: "Seleziona Paese *", fM: "Come possiamo aiutare? *", fB: "INVIA RICHIESTA"
+        }
     };
 
     function nav(id) {
         document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-        document.getElementById(id).classList.add('active');
-        if(id === 'prod-menu') renderCats();
+        const el = document.getElementById(id);
+        if(el) el.classList.add('active');
+        window.scrollTo(0,0);
     }
 
-    function renderCats() {
-        const lang = document.getElementById('langSelect').value;
-        const label = lang === 'it' ? 'Veicoli' : 'Vehicles';
-        document.getElementById('cat-anchor').innerHTML = `<div class="cat-card" onclick="renderList('vehicle')"><span>🚗</span>${label}</div>`;
-    }
-
-    function renderList(cat) {
-        nav('list-view');
-        document.getElementById('gridAnchor').innerHTML = `<div class="card"><h4>Product Placeholder</h4><button onclick="openForm('VL103')" class="btn-v">Inquiry</button></div>`;
-    }
-
-    function openForm(t) {
-        document.getElementById('f-title').innerText = t;
+    function openForm(title) {
+        document.getElementById('f-head').innerText = title;
         nav('contact');
     }
 
     function updateLang(l) {
-        const t = TXT[l];
-        document.getElementById('h-title').innerText = t.h;
-        document.getElementById('nav-prod').innerText = t.p;
-        // Direct placeholder updates
-        document.getElementById('in-name').placeholder = t.name;
-        document.getElementById('in-comp').placeholder = t.comp;
-        document.getElementById('in-email').placeholder = t.mail;
-        document.getElementById('in-tel').placeholder = t.tel;
-        document.getElementById('in-msg').placeholder = t.msg;
-        document.getElementById('btn-submit').innerText = t.sub;
-        renderCats();
+        const t = DICT[l];
+        // Nav
+        document.getElementById('nav-about').innerText = t.navAb;
+        document.getElementById('nav-home').innerText = t.navHm;
+        document.getElementById('nav-catalog').innerText = t.navCat;
+        document.getElementById('nav-contact').innerText = t.navCon;
+        // Hero
+        document.getElementById('h-title').innerText = t.hT;
+        document.getElementById('h-sub').innerText = t.hS;
+        // Catalog
+        document.getElementById('c-v').innerText = t.cV;
+        document.getElementById('c-a').innerText = t.cA;
+        document.getElementById('c-d').innerText = t.cD;
+        // Form
+        document.getElementById('f-head').innerText = t.fH;
+        document.getElementById('in-name').placeholder = t.fN;
+        document.getElementById('in-comp').placeholder = t.fC;
+        document.getElementById('in-mail').placeholder = t.fE;
+        document.getElementById('in-tel').placeholder = t.fP;
+        document.getElementById('in-opt').innerText = t.fO;
+        document.getElementById('in-msg').placeholder = t.fM;
+        document.getElementById('btn-submit').innerText = t.fB;
     }
 
-    setInterval(() => { document.getElementById('clock').innerText = new Date().toLocaleTimeString(); }, 1000);
+    setInterval(() => {
+        document.getElementById('clock').innerText = new Date().toLocaleTimeString();
+    }, 1000);
 </script>
+
 </body>
 </html>
